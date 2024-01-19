@@ -1,6 +1,17 @@
 return {
   "mhartington/formatter.nvim",
+  keys = {
+    { "<Leader>ft", "<cmd>Format<cr>", mode = { "n" }, desc = "Format" },
+  },
   config = function()
+    -- Format after save
+    local augroup = vim.api.nvim_create_augroup
+    local autocmd = vim.api.nvim_create_autocmd
+    augroup("__formatter__", { clear = true })
+    autocmd("BufWritePost", {
+      group = "__formatter__",
+      command = ":FormatWrite",
+    })
     -- Utilities for creating configurations
     local util = require "formatter.util"
     -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands

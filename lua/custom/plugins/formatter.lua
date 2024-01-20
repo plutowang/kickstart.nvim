@@ -1,21 +1,21 @@
 return {
-  "mhartington/formatter.nvim",
-  keys = {
-    { "<Leader>ft", "<cmd>Format<cr>", mode = { "n" }, desc = "Format" },
-  },
+  'mhartington/formatter.nvim',
   config = function()
     -- Format after save
     local augroup = vim.api.nvim_create_augroup
     local autocmd = vim.api.nvim_create_autocmd
-    augroup("__formatter__", { clear = true })
-    autocmd("BufWritePost", {
-      group = "__formatter__",
-      command = ":FormatWrite",
+    augroup('__formatter__', { clear = true })
+    autocmd('BufWritePost', {
+      group = '__formatter__',
+      command = ':FormatWrite',
     })
+    local map = vim.api.nvim_set_keymap
+    local opts = { noremap = true, silent = true }
+    map('n', '<Leader>ft', '<cmd>Format<cr>', opts)
     -- Utilities for creating configurations
-    local util = require "formatter.util"
+    local util = require 'formatter.util'
     -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-    require("formatter").setup {
+    require('formatter').setup {
       -- Enable or disable logging
       logging = true,
       -- Set the log level
@@ -23,65 +23,65 @@ return {
       -- All formatter configurations are opt-in
       filetype = {
         css = {
-          require("formatter.filetypes.css").prettier,
+          require('formatter.filetypes.css').prettier,
         },
         go = {
-          require("formatter.filetypes.go").gofmt(),
+          require('formatter.filetypes.go').gofmt(),
         },
         html = {
-          require("formatter.filetypes.html").prettier
+          require('formatter.filetypes.html').prettier
         },
         js = {
-          require("formatter.filetypes.javascript").prettier,
+          require('formatter.filetypes.javascript').prettier,
         },
         jsx = {
-          require("formatter.filetypes.javascriptreact").prettier,
+          require('formatter.filetypes.javascriptreact').prettier,
         },
-        -- Formatter configurations for filetype "lua" go here
+        -- Formatter configurations for filetype 'lua' go here
         -- and will be executed in order
         lua = {
-          -- "formatter.filetypes.lua" defines default configurations for the
-          -- "lua" filetype
-          require("formatter.filetypes.lua").stylua,
+          -- 'formatter.filetypes.lua' defines default configurations for the
+          -- 'lua' filetype
+          require('formatter.filetypes.lua').stylua,
 
           -- You can also define your own configuration
           function()
             -- Supports conditional formatting
-            if util.get_current_buffer_file_name() == "special.lua" then
+            if util.get_current_buffer_file_name() == 'special.lua' then
               return nil
             end
 
             -- Full specification of configurations is down below and in Vim help
             -- files
             return {
-              exe = "stylua",
+              exe = 'stylua',
               args = {
-                "--search-parent-directories",
-                "--stdin-filepath",
+                '--search-parent-directories',
+                '--stdin-filepath',
                 util.escape_path(util.get_current_buffer_file_path()),
-                "--",
-                "-",
+                '--',
+                '-',
               },
               stdin = true,
             }
           end
         },
         md = {
-          require("formatter.filetypes.markdown").prettier
+          require('formatter.filetypes.markdown').prettier
         },
         ts = {
-          require("formatter.filetypes.typescript").prettier
+          require('formatter.filetypes.typescript').prettier
         },
         tsx = {
-          require("formatter.filetypes.typescriptreact").prettier
+          require('formatter.filetypes.typescriptreact').prettier
         },
 
-        -- Use the special "*" filetype for defining formatter configurations on
+        -- Use the special '*' filetype for defining formatter configurations on
         -- any filetype
-        ["*"] = {
-          -- "formatter.filetypes.any" defines default configurations for any
+        ['*'] = {
+          -- 'formatter.filetypes.any' defines default configurations for any
           -- filetype
-          require("formatter.filetypes.any").remove_trailing_whitespace
+          require('formatter.filetypes.any').remove_trailing_whitespace
         }
       }
     }

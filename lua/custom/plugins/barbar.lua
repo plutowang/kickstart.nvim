@@ -1,0 +1,38 @@
+return {
+  'romgrk/barbar.nvim',
+  version = '*',                   -- optional: only update when a new 1.x version is released
+  dependencies = {
+    'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
+    'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+  },
+  config = function()
+    vim.g.barbar_auto_setup = false -- disable auto-setup
+    local map = vim.api.nvim_set_keymap
+    local opts = { noremap = true, silent = true }
+    map('n', '<leader>1', '<Cmd>BufferGoto 1<CR>', opts)
+    map('n', '<leader>2', '<Cmd>BufferGoto 2<CR>', opts)
+    map('n', '<leader>3', '<Cmd>BufferGoto 3<CR>', opts)
+    map('n', '<leader>4', '<Cmd>BufferGoto 4<CR>', opts)
+    map('n', '<leader>5', '<Cmd>BufferGoto 5<CR>', opts)
+    map('n', '<leader>6', '<Cmd>BufferGoto 6<CR>', opts)
+    map('n', '<leader>7', '<Cmd>BufferGoto 7<CR>', opts)
+    map('n', '<leader>8', '<Cmd>BufferGoto 8<CR>', opts)
+    map('n', '<leader>9', '<Cmd>BufferGoto 9<CR>', opts)
+    map('n', '<leader>0', '<Cmd>BufferLast<CR>', opts)
+
+    map('n', '<C-,>', '<Cmd>BufferPrevious<CR>', opts)
+    map('n', '<C-.>', '<Cmd>BufferNext<CR>', opts)
+    map('n', '<M-,>', '<Cmd>BufferMovePrevious<CR>', opts)
+    map('n', '<M-.>', '<Cmd>BufferMoveNext<CR>', opts)
+    require('barbar').setup({
+      animation = true,
+      no_name_title = '[No Name]',
+      insert_at_end = true,
+      exclude_name = { '[dap-repl]' },
+      exclude_ft = { 'qf' },
+      maximum_length = 60,
+      hide = { extensions = false, },
+      icons = { button = false, },
+    })
+  end,
+}

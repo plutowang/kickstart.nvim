@@ -20,8 +20,8 @@ return {
     map('n', '<leader>9', '<Cmd>BufferGoto 9<CR>', opts)
     map('n', '<leader>0', '<Cmd>BufferLast<CR>', opts)
 
-    map('n', '<C-,>', '<Cmd>BufferPrevious<CR>', opts)
-    map('n', '<C-.>', '<Cmd>BufferNext<CR>', opts)
+    map('n', '<C-h>', '<Cmd>BufferPrevious<CR>', opts)
+    map('n', '<C-l>', '<Cmd>BufferNext<CR>', opts)
     map('n', '<M-,>', '<Cmd>BufferMovePrevious<CR>', opts)
     map('n', '<M-.>', '<Cmd>BufferMoveNext<CR>', opts)
     require('barbar').setup({

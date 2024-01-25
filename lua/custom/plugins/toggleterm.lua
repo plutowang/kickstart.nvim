@@ -3,42 +3,42 @@ return {
     version = "*",
     keys = {
         {
-          "<leader>t",
-          function()
-            require("toggleterm").toggle(1, 0, vim.loop.cwd(), "horizontal")
-          end,
-          desc = "Horizontal Terminal",
+            "<leader>t",
+            function()
+                require("toggleterm").toggle(1, 0, vim.loop.cwd(), "horizontal")
+            end,
+            desc = "Horizontal Terminal",
         },
         {
             "<leader>t2",
             function()
-              require("toggleterm").toggle(2, 0, vim.loop.cwd(), "horizontal")
+                require("toggleterm").toggle(2, 0, vim.loop.cwd(), "horizontal")
             end,
             desc = "Horizontal Terminal",
-          },
+        },
         {
             "<leader>tf",
             function()
-              require("toggleterm").toggle(1, 0, vim.loop.cwd(), "float")
+                require("toggleterm").toggle(1, 0, vim.loop.cwd(), "float")
             end,
             desc = "Horizontal Terminal",
         },
         {
             "<leader>tv",
             function()
-              require("toggleterm").toggle(1, 0, vim.loop.cwd(), "vertical")
+                require("toggleterm").toggle(1, 0, vim.loop.cwd(), "vertical")
             end,
             desc = "Vertical Terminal",
         },
         {
-          "<leader>Tn",
-          "<cmd>ToggleTermSetName<cr>",
-          desc = "Set Terminal Name",
+            "<leader>Tn",
+            "<cmd>ToggleTermSetName<cr>",
+            desc = "Set Terminal Name",
         },
         {
-          "<leader>Ts",
-          "<cmd>TermSelect<cr>",
-          desc = "Select Terminal",
+            "<leader>Ts",
+            "<cmd>TermSelect<cr>",
+            desc = "Select Terminal",
         },
     },
     config = function()
@@ -54,6 +54,7 @@ return {
                     background = "Normal",
                 },
             },
+            shell = "pwsh.exe",
         })
     end,
 }

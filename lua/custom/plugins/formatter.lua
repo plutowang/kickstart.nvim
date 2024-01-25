@@ -1,14 +1,6 @@
 return {
   'mhartington/formatter.nvim',
   config = function()
-    -- Format after save
-    local augroup = vim.api.nvim_create_augroup
-    local autocmd = vim.api.nvim_create_autocmd
-    augroup('__formatter__', { clear = true })
-    autocmd('BufWritePost', {
-      group = '__formatter__',
-      command = ':FormatWrite',
-    })
     local map = vim.api.nvim_set_keymap
     local opts = { noremap = true, silent = true }
     map('n', '<Leader>ft', '<cmd>Format<cr>', opts)

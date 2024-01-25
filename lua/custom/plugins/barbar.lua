@@ -22,8 +22,9 @@ return {
 
     map('n', '<C-,>', '<Cmd>BufferPrevious<CR>', opts)
     map('n', '<C-.>', '<Cmd>BufferNext<CR>', opts)
-    map('n', '<M-,>', '<Cmd>BufferMovePrevious<CR>', opts)
-    map('n', '<M-.>', '<Cmd>BufferMoveNext<CR>', opts)
+    map('n', '<C-x>', '<Cmd>BufferClose<CR>', opts)
+    map('n', '<C-t><C-,>', '<Cmd>BufferMovePrevious<CR>', opts)
+    map('n', '<C-t><C-.>', '<Cmd>BufferMoveNext<CR>', opts)
     require('barbar').setup({
       animation = true,
       no_name_title = '[No Name]',

@@ -601,11 +601,11 @@ require('mason-lspconfig').setup()
 local servers = {
   angularls = {},
   astro = {},
-  -- clangd = {},
+  clangd = {},
   eslint = {},
   gopls = {},
   html = {},
-  -- pyright = {},
+  pyright = {},
   rust_analyzer = {},
   tailwindcss = {},
   tsserver = {},

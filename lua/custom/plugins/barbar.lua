@@ -20,10 +20,14 @@ return {
     map('n', '<leader>9', '<Cmd>BufferGoto 9<CR>', opts)
     map('n', '<leader>0', '<Cmd>BufferLast<CR>', opts)
 
+    map('n', '<leader>od', '<Cmd>BufferOrderByDirectory<CR>', opts)
+    map('n', '<leader>ol', '<Cmd>BufferOrderByLanguage<CR>', opts)
+
     map('n', '<C-h>', '<Cmd>BufferPrevious<CR>', opts)
     map('n', '<C-l>', '<Cmd>BufferNext<CR>', opts)
-    map('n', '<M-,>', '<Cmd>BufferMovePrevious<CR>', opts)
-    map('n', '<M-.>', '<Cmd>BufferMoveNext<CR>', opts)
+    map('n', '<C-x>', '<Cmd>BufferClose<CR>', opts)
+    map('n', '<C-m><C-h>', '<Cmd>BufferMovePrevious<CR>', opts)
+    map('n', '<C-m><C-l>', '<Cmd>BufferMoveNext<CR>', opts)
     require('barbar').setup({
       animation = true,
       no_name_title = '[No Name]',
@@ -32,7 +36,10 @@ return {
       exclude_ft = { 'qf' },
       maximum_length = 60,
       hide = { extensions = false, },
-      icons = { button = false, },
+      icons = {
+        button = false,
+        preset = 'default',
+      },
     })
   end,
 }

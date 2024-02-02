@@ -604,7 +604,17 @@ local servers = {
   astro = {},
   -- clangd = {},
   eslint = {},
-  gopls = {},
+  gopls = {
+    hints = {
+      assignVariableTypes = true,
+      compositeLiteralFields = true,
+      compositeLiteralTypes = true,
+      constantValues = true,
+      functionTypeParameters = true,
+      parameterNames = true,
+      rangeVariableTypes = true,
+    },
+  },
   html = {},
   -- pyright = {},
   rust_analyzer = {

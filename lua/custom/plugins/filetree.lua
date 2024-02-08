@@ -41,26 +41,34 @@ return {
   config = function()
     require('neo-tree').setup({
       auto_clean_after_session_restore = true,
-      filtered_items = {
-        hide_dotfiles = true,
-        hide_gitignored = true,
-        hide_hidden = true, -- only works on Windows for hidden files/directories
-        hide_by_name = {
-          "node_modules"
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = true,
+          hide_gitignored = true,
+          hide_hidden = true, -- only works on Windows for hidden files/directories
+          hide_by_name = {
+            "node_modules"
+          },
+          hide_by_pattern = { -- uses glob style patterns
+            "*/src/*/tsconfig.json",
+          },
+          always_show = { -- remains visible even if other settings would normally hide it
+            ".gitignored",
+          },
+          never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
+            ".DS_Store",
+            "thumbs.db"
+          },
+          never_show_by_pattern = { -- uses glob style patterns
+            ".null-ls_*",
+          },
         },
-        hide_by_pattern = { -- uses glob style patterns
-          "*/src/*/tsconfig.json",
+        follow_current_file = {
+          enabled = true,          -- This will find and focus the file in the active buffer every time
+          --               -- the current file is changed while the tree is open.
+          leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
-        always_show = { -- remains visible even if other settings would normally hide it
-          ".gitignored",
-        },
-        never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-          ".DS_Store",
-          "thumbs.db"
-        },
-        never_show_by_pattern = { -- uses glob style patterns
-          ".null-ls_*",
-        },
+        use_libuv_file_watcher = true,
       },
       close_if_last_window = false,
       enable_diagnostics = true,
@@ -71,6 +79,14 @@ return {
         position = "left",
         width = "15%",
         auto_expand_width = false,
+      },
+      buffers = {
+        follow_current_file = {
+          enabled = true,          -- This will find and focus the file in the active buffer every time
+          --              -- the current file is changed while the tree is open.
+          leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+        },
+        show_unloaded = true,
       },
     })
   end,

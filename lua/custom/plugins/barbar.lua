@@ -6,7 +6,7 @@ return {
     'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
   },
   config = function()
-    vim.g.barbar_auto_setup = false -- disable auto-setup
+    vim.g.barbar_auto_setup = true -- disable auto-setup
     local map = vim.api.nvim_set_keymap
     local opts = { noremap = true, silent = true }
     map('n', '<leader>1', '<Cmd>BufferGoto 1<CR>', opts)

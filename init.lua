@@ -574,59 +574,65 @@ require('lazy').setup({
         clangd = {},
         eslint = {},
         gopls = {
-          gopls = {
-            hints = {
-              assignVariableTypes = true,
-              compositeLiteralFields = true,
-              compositeLiteralTypes = true,
-              constantValues = true,
-              functionTypeParameters = true,
-              parameterNames = true,
-              rangeVariableTypes = true,
+          settings = {
+            gopls = {
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
             },
-          },
+          }
         },
         html = {},
         pyright = {},
         rust_analyzer = {
-          ['rust-analyzer'] = {
-            cargo = {
-              allFeatures = true,
-              loadOutDirsFromCheck = true,
-              runBuildScripts = true,
-              buildScripts = {
-                rebuildOnSave = true,
+          settings = {
+            ['rust-analyzer'] = {
+              cargo = {
+                allFeatures = true,
+                loadOutDirsFromCheck = true,
+                runBuildScripts = true,
+                buildScripts = {
+                  rebuildOnSave = true,
+                },
               },
-            },
-            -- Add clippy lints for Rust.
-            checkOnSave = {
-              allFeatures = true,
-              command = 'clippy',
-              extraArgs = { '--no-deps' },
-            },
-            procMacro = {
-              enable = true,
-              ignored = {
-                ['async-trait'] = { 'async_trait' },
-                ['napi-derive'] = { 'napi' },
-                ['async-recursion'] = { 'async_recursion' },
+              -- Add clippy lints for Rust.
+              checkOnSave = {
+                allFeatures = true,
+                command = 'clippy',
+                extraArgs = { '--no-deps' },
               },
-            },
-
-            completion = {
-              fullFunctionSignatures = {
+              procMacro = {
                 enable = true,
+                ignored = {
+                  ['async-trait'] = { 'async_trait' },
+                  ['napi-derive'] = { 'napi' },
+                  ['async-recursion'] = { 'async_recursion' },
+                },
+              },
+              completion = {
+                fullFunctionSignatures = {
+                  enable = true,
+                },
+              },
+              inlayHints = {
+                closureCaptureHints = {
+                  enable = true,
+                },
+                closureReturnTypeHints = {
+                  enable = 'always',
+                },
+                bindingModeHints = {
+                  enable = true,
+                },
               },
             },
-            inlayHints = {
-              closureReturnTypeHints = {
-                enable = true,
-              },
-              bindingModeHints = {
-                enable = true,
-              },
-            },
-          },
+          }
         },
         tailwindcss = {},
         tsserver = {},
@@ -1081,14 +1087,14 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
--- supports inlay hints
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-    end
-    -- whatever other lsp config you want
-  end,
-})
+-- -- supports inlay hints
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+--   callback = function(args)
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     if client.server_capabilities.inlayHintProvider then
+--       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+--     end
+--     -- whatever other lsp config you want
+--   end,
+-- })

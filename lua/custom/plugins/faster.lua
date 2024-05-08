@@ -1,6 +1,7 @@
 return {
-  'pteroctopus/faster.nvim'
+  'pteroctopus/faster.nvim',
   config = function()
     require('faster').setup()
-  end
+  end,
 }
+

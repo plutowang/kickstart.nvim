@@ -319,7 +319,7 @@ require('lazy').setup({
         -- `build` is used to run some command when the plugin is installed/updated.
         -- This is only run then, not every time Neovim starts up.
         build = (function()
-          if (vim.fn.has 'win32' == 1 and vim.fn.executable 'cmake' == 1) then
+          if vim.fn.has 'win32' == 1 and vim.fn.executable 'cmake' == 1 then
             return 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
           end
           return 'make'
@@ -591,7 +591,7 @@ require('lazy').setup({
                 rangeVariableTypes = true,
               },
             },
-          }
+          },
         },
         html = {},
         pyright = {},
@@ -637,7 +637,7 @@ require('lazy').setup({
                 },
               },
             },
-          }
+          },
         },
         tailwindcss = {},
         tsserver = {},
@@ -883,6 +883,7 @@ require('lazy').setup({
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
+      vim.opt.background = 'light'
       require('onedark').setup {
         style = 'light',
         transparent = false,
@@ -900,7 +901,7 @@ require('lazy').setup({
     end,
   },
 
-  -- { 
+  -- {
   --   "catppuccin/nvim",
   --   name = "catppuccin",
   --   priority = 1000,
@@ -957,8 +958,8 @@ require('lazy').setup({
           'mason',
           'neo-tree',
           'nvim-dap-ui',
-          'toggleterm'
-        }
+          'toggleterm',
+        },
       },
     },
   },

@@ -1142,14 +1142,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
--- -- supports inlay hints
--- vim.api.nvim_create_autocmd('LspAttach', {
---   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
---   callback = function(args)
---     local client = vim.lsp.get_client_by_id(args.data.client_id)
---     if client.server_capabilities.inlayHintProvider then
---       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
---     end
---     -- whatever other lsp config you want
---   end,
--- })
+-- auto-reload files when modified externally
+-- https://unix.stackexchange.com/a/383044
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'CursorHoldI', 'FocusGained' }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { '*' },
+})

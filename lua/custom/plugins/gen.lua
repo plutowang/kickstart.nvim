@@ -1,9 +1,9 @@
 return {
   'David-Kunz/gen.nvim',
   config = function()
-    vim.keymap.set({ 'n', 'v' }, '<leader>gn', ':Gen<CR>', { desc = '[G]e[n]erate text based on predefined and customizable prompts' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>gw', ':Gen Enhance_Wording<CR>', { desc = '[G]enerate based on enhance [W]ording prompts' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>gr', ':Gen Review_Code<CR>', { desc = '[G]enerate based on [R]eview code prompts' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>gen', ':Gen<CR>', { desc = '[G]e[n]erate text based on predefined and customizable prompts' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>gnw', ':Gen Enhance_Wording<CR>', { desc = '[G]enerate based on enhance [W]ording prompts' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>gnr', ':Gen Review_Code<CR>', { desc = '[G]enerate based on [R]eview code prompts' })
     require('gen').setup {
       model = 'llama3', -- The default model to use.
       host = 'localhost', -- The host running the Ollama service.

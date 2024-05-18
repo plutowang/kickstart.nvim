@@ -158,6 +158,11 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Auto save
+vim.opt.autoread = true
+vim.opt.autowrite = true
+vim.opt.autowriteall = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 

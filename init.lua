@@ -158,11 +158,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- Auto save
-vim.opt.autoread = true
-vim.opt.autowrite = true
-vim.opt.autowriteall = true
-
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -1155,6 +1150,11 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'CursorHoldI', 'FocusGai
   pattern = { '*' },
 })
 
+
+-- Auto save
+vim.opt.autoread = true
+vim.opt.autowrite = true
+vim.opt.autowriteall = true
 vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
   callback = function()
     if vim.bo.modified and not vim.bo.readonly and vim.fn.expand '%' ~= '' and vim.bo.buftype == '' then

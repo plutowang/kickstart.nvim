@@ -4,7 +4,9 @@ return {
     vim.keymap.set({ 'n', 'v' }, '<C-g><C-g>', ':Gen<CR>', { desc = '[G]enerate text based on predefined and customizable prompts' })
     vim.keymap.set({ 'n', 'v' }, '<C-g><C-w>', ':Gen Enhance_Wording<CR>', { desc = '[G]enerate based on enhance [W]ording prompts' })
     vim.keymap.set({ 'n', 'v' }, '<C-g><C-r>', ':Gen Review_Code<CR>', { desc = '[G]enerate based on [R]eview code prompts' })
-    vim.keymap.set({ 'n', 'v' }, '<C-g><C-c>', ':Gen Generate_Comments<CR>', { desc = '[G]enerate [C]omments' })
+    vim.keymap.set({ 'n', 'v' }, '<C-g><A-c>', ':Gen Generate_Comments<CR>', { desc = '[G]enerate [C]omments' })
+    vim.keymap.set({ 'n', 'v' }, '<C-g><C-t><A-c>', ':Gen Translate_Into_Chinese<CR>', { desc = '[G]enerate [T]ranslate into [C]hinese' })
+    vim.keymap.set({ 'n', 'v' }, '<C-g><C-t>', ':Gen Translate_Into<CR>', { desc = '[G]enerate [T]ranslate into...' })
     require('gen').setup {
       model = 'llama3', -- The default model to use.
       host = 'localhost', -- The host running the Ollama service.
@@ -32,16 +34,24 @@ return {
     }
     require('gen').prompts['AWS Help'] = {
       prompt = 'You are a senior devops engineer, acting as an assistant. You offer help with cloud technologies like: AWS, CDK, typescript, golang, rust. You answer with code examples when possible. $input:\n$text',
-      replace = true,
+      replace = false,
     }
     require('gen').prompts['Developer Help'] = {
       prompt = 'You are a senior developer, acting as an assistant. You offer help with cloud technologies like: typescript, golang, rust, zig, Angular, React, webpack. You answer with code examples when possible. $input:\n$text',
-      replace = true,
+      replace = false,
     }
     require('gen').prompts['Generate_Comments'] = {
       prompt = 'You are a senior developer, acting as an assistant. You generate comments in format $filetype language: $filetype\n$text\n',
-      replace = true,
+      replace = false,
       extract = "```$filetype\n(.-)```",
+    }
+    require('gen').prompts['Translate_Into_Chinese'] = {
+      prompt = 'You are a professional interpreter, acting as an assistant. You translate any input language into Chinese:\n$text\n',
+      replace = false,
+    }
+    require('gen').prompts['Translate_Into'] = {
+      prompt = 'You are a professional interpreter, acting as an assistant. You translate any input language into $input:\n$text\n',
+      replace = false,
     }
   end,
 }

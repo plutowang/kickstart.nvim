@@ -879,70 +879,71 @@ require('lazy').setup({
   --   end,
   -- },
 
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.opt.background = 'light'
-      require('onedark').setup {
-        style = 'light',
-        transparent = false,
+  --{
+  --  -- Theme inspired by Atom
+  --  'navarasu/onedark.nvim',
+  --  priority = 1000,
+  --  config = function()
+  --    vim.opt.background = 'light'
+  --    require('onedark').setup {
+  --      style = 'light',
+  --      transparent = true,
+  --
+  --      -- Lualine options --
+  --      lualine = {
+  --        transparent = true, -- lualine center bar transparency
+  --      },
+  --
+  --      -- toggle theme style ---
+  --      toggle_style_key = '<leader>ct', -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+  --      toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }, -- List of styles to toggle between
+  --    }
+  --    vim.cmd.colorscheme 'onedark'
+  --  end,
+  --},
 
-        -- Lualine options --
-        lualine = {
-          transparent = false, -- lualine center bar transparency
-        },
-
-        -- toggle theme style ---
-        toggle_style_key = '<leader>ct', -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
-        toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }, -- List of styles to toggle between
-      }
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   priority = 1000,
-  --   config = function()
-  --     require("catppuccin").setup({
-  --       flavour = "auto", -- latte, frappe, macchiato, mocha
-  --       background = { -- :h background
-  --           light = "latte",
-  --           dark = "frappe",
-  --       },
-  --       transparent_background = false, -- disables setting the background color.
-  --       show_end_of_buffer = true, -- shows the '~' characters after the end of buffers
-  --       term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
-  --       dim_inactive = {
-  --           enabled = false, -- dims the background color of inactive window
-  --           shade = "dark",
-  --           percentage = 0.15, -- percentage of the shade to apply to the inactive window
-  --       },
-  --       no_italic = false, -- Force no italic
-  --       no_bold = false, -- Force no bold
-  --       no_underline = false, -- Force no underline
-  --       default_integrations = true,
-  --       integrations = {
-  --           cmp = true,
-  --           gitsigns = true,
-  --           nvimtree = true,
-  --           treesitter = true,
-  --           notify = false,
-  --           mini = {
-  --               enabled = true,
-  --               indentscope_color = "",
-  --           },
-  --           barbar = true,
-  --           mason = true,
-  --           neotree = true,
-  --       },
-  --     })
-  --     vim.cmd.colorscheme "catppuccin"
-  --   end
-  -- },
+   {
+     "catppuccin/nvim",
+     name = "catppuccin",
+     priority = 1000,
+     config = function()
+       vim.opt.background = 'light'
+       require("catppuccin").setup({
+         flavour = "auto", -- latte, frappe, macchiato, mocha
+         background = { -- :h background
+             light = "latte",
+             dark = "frappe",
+         },
+         transparent_background = true, -- disables setting the background color.
+         show_end_of_buffer = true, -- shows the '~' characters after the end of buffers
+         term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+         dim_inactive = {
+             enabled = false, -- dims the background color of inactive window
+             shade = "dark",
+             percentage = 0.15, -- percentage of the shade to apply to the inactive window
+         },
+         no_italic = false, -- Force no italic
+         no_bold = false, -- Force no bold
+         no_underline = false, -- Force no underline
+         default_integrations = true,
+         integrations = {
+             cmp = true,
+             gitsigns = true,
+             nvimtree = true,
+             treesitter = true,
+             notify = false,
+             mini = {
+                 enabled = true,
+                 indentscope_color = "",
+             },
+             barbar = true,
+             mason = true,
+             neotree = true,
+         },
+       })
+       vim.cmd.colorscheme "catppuccin"
+     end
+   },
 
   {
     -- Set lualine as statusline
@@ -951,7 +952,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'onedark',
+        theme = 'catppuccin',
         component_separators = '|',
         section_separators = '',
         extensions = {

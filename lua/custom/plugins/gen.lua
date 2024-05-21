@@ -7,6 +7,7 @@ return {
     vim.keymap.set({ 'n', 'v' }, '<C-g><A-c>', ':Gen Generate_Comments<CR>', { desc = '[G]enerate [C]omments' })
     vim.keymap.set({ 'n', 'v' }, '<C-g><C-t><A-c>', ':Gen Translate_Into_Chinese<CR>', { desc = '[G]enerate [T]ranslate into [C]hinese' })
     vim.keymap.set({ 'n', 'v' }, '<C-g><C-t>', ':Gen Translate_Into<CR>', { desc = '[G]enerate [T]ranslate into...' })
+    vim.keymap.set({ 'n', 'v' }, '<C-g><C-m>', ':Gen Multi_Language_Translate<CR>', { desc = '[G]enerate [M]ulti Language Translate' })
     require('gen').setup {
       model = 'llama3', -- The default model to use.
       host = 'localhost', -- The host running the Ollama service.
@@ -46,11 +47,15 @@ return {
       extract = "```$filetype\n(.-)```",
     }
     require('gen').prompts['Translate_Into_Chinese'] = {
-      prompt = 'You are a professional interpreter, acting as an assistant. You translate any input language into Chinese:\n$text\n',
+      prompt = 'You are a professional interpreter and senior developer, acting as an assistant. Note the input text maybe in programing comment, please only withdraw text. You translate the following input text into Simplified Chinese:\n"$text"\n',
       replace = false,
     }
     require('gen').prompts['Translate_Into'] = {
-      prompt = 'You are a professional interpreter, acting as an assistant. You translate any input language into $input:\n$text\n',
+      prompt = 'You are a professional interpreter and senior developer, acting as an assistant. Note the input text maybe in programing comment, please only withdraw text. You translate the following input text into $input:\n"$text"\n',
+      replace = false,
+    }
+    require('gen').prompts['Multi_Language_Translate'] = {
+      prompt = 'You are a professional interpreter and senior developer, acting as an assistant. Please translate following text into en,es,fr,Simplified Chinese, each language only keep one result, the output should only include the translation results, and all translation in the same line and split with comma:\n"$text"\n',
       replace = false,
     }
   end,

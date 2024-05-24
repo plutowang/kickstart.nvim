@@ -676,8 +676,7 @@ require('lazy').setup({
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
-        },
-        graphql = {},
+        }
       }
 
       -- Ensure the servers and tools above are installed
@@ -964,6 +963,11 @@ require('lazy').setup({
           'toggleterm',
         },
       },
+      sections = {
+        lualine_x = {
+          "rest"
+        }
+      }
     },
   },
 
@@ -1014,30 +1018,29 @@ require('lazy').setup({
       ensure_installed = {
         'angular',
         'astro',
+        'bash',
         'c',
         'cpp',
         'css',
         'go',
+        'graphql',
         'html',
+        'http',
+        'javascript',
+        'json',
         'lua',
+        'markdown',
         'markdown_inline',
         'python',
         'rust',
         'toml',
         'tsx',
-        'javascript',
         'typescript',
-        'vimdoc',
         'vim',
-        'bash',
-        'yaml',
-        'http',
-        'json',
-        'zig',
-        'graphql',
+        'vimdoc',
         'xml',
-        'lua',
-        'markdown',
+        'yaml',
+        'zig',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -1078,7 +1081,7 @@ require('lazy').setup({
   --
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
-  require 'kickstart.plugins.lint',
+  -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps

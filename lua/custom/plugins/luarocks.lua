@@ -1,5 +1,6 @@
 return {
   'vhyrro/luarocks.nvim',
+  ft = "http",
   priority = 1000,
   config = true,
   opts = {

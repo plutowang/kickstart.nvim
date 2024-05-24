@@ -1,9 +1,8 @@
 return {
   'rest-nvim/rest.nvim',
+  ft = "http",
   dependencies = {
-    {
-      'vhyrro/luarocks.nvim',
-    },
+    'luarocks.nvim',
   },
   config = function()
     -- local map = vim.api.nvim_set_keymap
@@ -81,14 +80,19 @@ return {
       ---@see vim.keymap.set
       keybinds = {
         {
-          '<localleader>rr',
-          ':Rest run',
+          '<leader>rr',
+          ':[R]est [R]un<CR>',
           'Run request under the cursor',
         },
         {
-          '<localleader>rl',
-          ':Rest run last',
+          '<leader>rl',
+          ':[R]est Run [L]ast<CR>',
           'Re-run latest request',
+        },
+        {
+          '<leader>rs',
+          ':Telescope rest select_env<CR>',
+          '[R]est [S]elect Env File',
         },
       },
     }

@@ -27,6 +27,7 @@ return {
             "oil",
             "undotree",
             "Trouble",
+            "startuptime"
         }
     }
 }

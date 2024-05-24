@@ -1,5 +1,11 @@
 return {
   'rest-nvim/rest.nvim',
+  enabled = function()
+    if vim.fn.has 'win32' == 1 then
+      return false
+    end
+    return true
+  end,
   ft = "http",
   dependencies = {
     'luarocks.nvim',
@@ -81,17 +87,17 @@ return {
       keybinds = {
         {
           '<leader>rr',
-          ':[R]est [R]un<CR>',
-          'Run request under the cursor',
+          '<cmd>Rest run<cr>',
+          '[R]un [r]equest under the cursor',
         },
         {
           '<leader>rl',
-          ':[R]est Run [L]ast<CR>',
-          'Re-run latest request',
+          '<cmd>Rest run last<cr>',
+          '[R]e-run [l]atest request',
         },
         {
           '<leader>rs',
-          ':Telescope rest select_env<CR>',
+          '<cmd>Telescope rest select_env<cr>',
           '[R]est [S]elect Env File',
         },
       },

@@ -25,6 +25,7 @@ return {
     'leoluz/nvim-dap-go',
     'theHamsta/nvim-dap-virtual-text',
   },
+  ft = {"go", 'gomod'},
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'

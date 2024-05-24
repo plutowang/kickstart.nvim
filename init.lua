@@ -242,25 +242,25 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  -- { 'numToStr/Comment.nvim', opts = {} },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
   --    require('gitsigns').setup({ ... })
   --
   -- See `:help gitsigns` to understand what the configuration keys do
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
+  --{ -- Adds git related signs to the gutter, as well as utilities for managing changes
+  --  'lewis6991/gitsigns.nvim',
+  --  opts = {
+  --    signs = {
+  --      add = { text = '+' },
+  --      change = { text = '~' },
+  --      delete = { text = '_' },
+  --      topdelete = { text = '‾' },
+  --      changedelete = { text = '~' },
+  --    },
+  --  },
+  --},
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -947,7 +947,7 @@ require('lazy').setup({
 
   {
     -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
+    'nvim-klualine/lualine.nvim',
     -- See `:help lualine.txt`
     opts = {
       options = {
@@ -963,11 +963,11 @@ require('lazy').setup({
           'toggleterm',
         },
       },
-      sections = {
-        lualine_x = {
-          "rest"
-        }
-      }
+      --sections = {
+      --  lualine_x = {
+      --    "rest"
+      --  }
+      --}
     },
   },
 
@@ -1151,10 +1151,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- auto-reload files when modified externally
 -- https://unix.stackexchange.com/a/383044
 vim.o.autoread = true
-vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'CursorHoldI', 'FocusGained' }, {
-  command = "if mode() != 'c' | checktime | endif",
-  pattern = { '*' },
-})
+--vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'CursorHoldI', 'FocusGained' }, {
+--  command = "if mode() != 'c' | checktime | endif",
+--  pattern = { '*' },
+--})
 
 -- Auto save
 vim.opt.autoread = true

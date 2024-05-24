@@ -17,7 +17,6 @@ return {
                         --
                         -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
                         -- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
-                        ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
                         ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
                     },
                     goto_next_end = {
@@ -32,15 +31,6 @@ return {
                         ["[M"] = "@function.outer",
                         ["[]"] = "@class.outer",
                     },
-                    -- Below will go to either the start or the end, whichever is closer.
-                    -- Use if you want more granular movements
-                    -- Make it even more gradual by adding multiple queries and regex.
-                    goto_next = {
-                        ["]d"] = "@conditional.outer",
-                    },
-                    goto_previous = {
-                        ["[d"] = "@conditional.outer",
-                    }
                 },
             },
         }

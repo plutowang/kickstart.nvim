@@ -6,6 +6,7 @@ return {
     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
     "MunifTanjim/nui.nvim",
   },
+  cmd = { "Neotree" },
   config = function()
     local tree = require 'neo-tree.command'
     vim.keymap.set("n", "<leader>re", function()

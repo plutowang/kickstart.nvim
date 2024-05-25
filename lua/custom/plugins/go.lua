@@ -5,8 +5,8 @@ return {
         "neovim/nvim-lspconfig",
         "nvim-treesitter/nvim-treesitter",
     },
-    event = {"BufAdd"},
-    ft = {"go", 'gomod'},
+    event = { "BufAdd" },
+    ft = { "go", 'gomod' },
     config = function()
         local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
         vim.api.nvim_create_autocmd("BufWritePre", {

@@ -1,13 +1,16 @@
 return {
   'David-Kunz/gen.nvim',
+  -- :help map-table
+  keys = {
+    { '<C-g><C-g>', ':Gen<CR>', mode = { "n", "v" }, desc = '[G]enerate text based on predefined and customizable prompts' },
+    { '<C-g><C-w>', ':Gen Enhance_Wording<CR>', mode = { "v" }, desc = '[G]enerate based on enhance [W]ording prompts' },
+    { '<C-g><C-r>', ':Gen Review_Code<CR>', mode = { "v" }, desc = '[G]enerate based on [R]eview code prompts' },
+    { '<C-g><A-c>', ':Gen Generate_Comments<CR>', mode = { "v" }, desc = '[G]enerate [C]omments' },
+    { '<C-g><C-t><A-c>', ':Gen Translate_Into_Chinese<CR>', mode = { "v" }, desc = '[G]enerate [T]ranslate into [C]hinese' },
+    { '<C-g><C-t>', ':Gen Translate_Into<CR>', mode = { "v" }, desc = '[G]enerate [T]ranslate into...' },
+    { '<C-g><C-m>', ':Gen Multi_Language_Translate<CR>', mode = { "v" }, desc = '[G]enerate [M]ulti Language Translate' }
+  },
   config = function()
-    vim.keymap.set({ 'n', 'v' }, '<C-g><C-g>', ':Gen<CR>', { desc = '[G]enerate text based on predefined and customizable prompts' })
-    vim.keymap.set({ 'n', 'v' }, '<C-g><C-w>', ':Gen Enhance_Wording<CR>', { desc = '[G]enerate based on enhance [W]ording prompts' })
-    vim.keymap.set({ 'n', 'v' }, '<C-g><C-r>', ':Gen Review_Code<CR>', { desc = '[G]enerate based on [R]eview code prompts' })
-    vim.keymap.set({ 'n', 'v' }, '<C-g><A-c>', ':Gen Generate_Comments<CR>', { desc = '[G]enerate [C]omments' })
-    vim.keymap.set({ 'n', 'v' }, '<C-g><C-t><A-c>', ':Gen Translate_Into_Chinese<CR>', { desc = '[G]enerate [T]ranslate into [C]hinese' })
-    vim.keymap.set({ 'n', 'v' }, '<C-g><C-t>', ':Gen Translate_Into<CR>', { desc = '[G]enerate [T]ranslate into...' })
-    vim.keymap.set({ 'n', 'v' }, '<C-g><C-m>', ':Gen Multi_Language_Translate<CR>', { desc = '[G]enerate [M]ulti Language Translate' })
     require('gen').setup {
       model = 'llama3', -- The default model to use.
       host = 'localhost', -- The host running the Ollama service.

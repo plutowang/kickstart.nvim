@@ -6,21 +6,37 @@ return {
     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
     "MunifTanjim/nui.nvim",
   },
-  cmd = { "Neotree" },
+  keys = {
+    {
+      "<leader>re",
+      function()
+        require("neo-tree.command").execute({ toggle = true, dir = "/" })
+      end,
+      desc = "[R]oot [E]xplorer NeoTree",
+    },
+    {
+      "<leader>fe",
+      function()
+        require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+      end,
+      desc = "[F]ile [E]xplorer NeoTree",
+    },
+    {
+      "<leader>ge",
+      function()
+        require("neo-tree.command").execute({ source = "git_status", toggle = true })
+      end,
+      desc = "[G]it [E]xplorer NeoTree",
+    },
+    {
+      "<leader>be",
+      function()
+        require("neo-tree.command").execute({ source = "buffers", toggle = true })
+      end,
+      desc = "[B]uffer [E]xplorer NeoTree",
+    },
+  },
   config = function()
-    local tree = require 'neo-tree.command'
-    vim.keymap.set("n", "<leader>re", function()
-      tree.execute({ toggle = true, dir = "/" })
-    end, { desc = "(R)oot (E)xplorer NeoTree" })
-    vim.keymap.set("n", "<leader>fe", function()
-      tree.execute({ toggle = true, dir = vim.loop.cwd() })
-    end, { desc = "(F)ile (E)xplorer NeoTree" })
-    vim.keymap.set("n", "<leader>ge", function()
-      tree.execute({ source = "git_status", toggle = true })
-    end, { desc = "(G)it (E)xplorer NeoTree" })
-    vim.keymap.set("n", "<leader>be", function()
-      tree.execute({ source = "buffers", toggle = true })
-    end, { desc = "(B)uffer (E)xplorer NeoTree" })
     require('neo-tree').setup({
       auto_clean_after_session_restore = true,
       filesystem = {

@@ -1,5 +1,6 @@
 return {
   'numToStr/Comment.nvim',
+  lazy = true,
   config = function()
     -- NORMAL mode
     -- `gcc` - Toggles the current line using linewise comment

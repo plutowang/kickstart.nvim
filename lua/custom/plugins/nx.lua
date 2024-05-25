@@ -1,5 +1,7 @@
 return {
     {
+        -- TODO: change back to 'Equilibris/nx.nvim' once toggleterm_runner issue fixed
+        -- https://github.com/Equilibris/nx.nvim/pull/27
         "plutowang/nx.nvim",
         dependencies = {
             "nvim-telescope/telescope.nvim",

@@ -4,11 +4,11 @@ return {
     version = '*',
     keys = {
       {
-        "<leader>th",
+        "<leader>tt",
         function()
           require("toggleterm").toggle(1, 0, vim.loop.cwd(), "horizontal")
         end,
-        desc = "[T]erminal [H]orizontal",
+        desc = "[T]oggle [T]erminal Horizontal",
       },
       {
         "<leader>tv",

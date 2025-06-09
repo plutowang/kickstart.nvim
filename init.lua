@@ -375,7 +375,7 @@ require('lazy').setup({
 
         -- `build` is used to run some command when the plugin is installed/updated.
         -- This is only run then, not every time Neovim starts up.
-                build = (function()
+        build = (function()
           if vim.fn.has 'win32' == 1 and vim.fn.executable 'cmake' == 1 then
             return 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
           end
@@ -1115,35 +1115,35 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 
+      ensure_installed = {
         'angular',
         'astro',
-        'bash', 
-        'c', 
-        'diff', 
+        'bash',
+        'c',
+        'diff',
         'cpp',
         'css',
         'go',
         'graphql',
-        'html', 
+        'html',
         'http',
         'javascript',
         'json',
-        'lua', 
-        'luadoc', 
-        'markdown', 
-        'markdown_inline', 
-        'query', 
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
         'python',
         'rust',
         'toml',
         'tsx',
         'typescript',
-        'vim', 
+        'vim',
         'vimdoc',
         'xml',
         'yaml',
-        'zig', 
+        'zig',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

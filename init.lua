@@ -761,7 +761,7 @@ require('lazy').setup({
           },
         },
         tailwindcss = {},
-        ts_ls = {},
+        tsserver = {},
         zls = {
           settings = {
             zls = {

@@ -2,34 +2,35 @@ return {
   {
     'akinsho/toggleterm.nvim',
     version = '*',
+    event = { 'BufReadPost', 'BufNewFile' },
     keys = {
       {
-        "<leader>tt",
+        '<leader>tt',
         function()
-          require("toggleterm").toggle(1, 0, vim.loop.cwd(), "horizontal")
+          require('toggleterm').toggle(1, 0, vim.loop.cwd(), 'horizontal')
         end,
-        desc = "[T]oggle [T]erminal Horizontal",
+        desc = '[T]oggle [T]erminal Horizontal',
       },
       {
-        "<leader>tv",
+        '<leader>tv',
         function()
-          require("toggleterm").toggle(1, 0, vim.loop.cwd(), "vertical")
+          require('toggleterm').toggle(1, 0, vim.loop.cwd(), 'vertical')
         end,
-        desc = "Terminal [V]ertical ",
+        desc = 'Terminal [V]ertical ',
       },
       {
-        "<leader>tf",
+        '<leader>tf',
         function()
-          require("toggleterm").toggle(2, 0, vim.loop.cwd(), "float")
+          require('toggleterm').toggle(2, 0, vim.loop.cwd(), 'float')
         end,
-        desc = "[T]erminal [F]loat",
+        desc = '[T]erminal [F]loat',
       },
       {
-        "<leader>ts",
+        '<leader>ts',
         function()
           require('toggleterm').send_lines_to_terminal('single_line', trim_spaces, { args = vim.v.count })
         end,
-        desc = "[T]erminal [S]ent lines",
+        desc = '[T]erminal [S]ent lines',
       },
     },
     config = function()
@@ -46,5 +47,5 @@ return {
         },
       }
     end,
-  }
+  },
 }

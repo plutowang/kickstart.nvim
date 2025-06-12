@@ -871,11 +871,26 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        go = { 'goimports', 'gofmt' },
+        rust = { 'rustfmt', lsp_format = 'fallback' },
+        zig = { 'zig_fmt' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        -- Use the "*" filetype to run formatters on all filetypes.
+        ['*'] = { 'codespell' },
+        -- Use the "_" filetype to run formatters on filetypes that don't
+        -- have other formatters configured.
+        ['_'] = { 'trim_whitespace' },
+      },
+      formatters = {
+        zig_fmt = {
+          command = 'zig',
+          args = { 'fmt', '--stdin' },
+          stdin = true,
+        },
       },
     },
   },
@@ -1144,6 +1159,11 @@ require('lazy').setup({
         'xml',
         'yaml',
         'zig',
+        'git_config',
+        'gitcommit',
+        'git_rebase',
+        'gitignore',
+        'gitattributes',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

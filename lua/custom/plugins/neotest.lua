@@ -4,6 +4,7 @@ return {
     -- optional = true,
     dependencies = {
       'lawrence-laz/neotest-zig',
+      'fredrikaverpil/neotest-golang',
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
       'antoinemadec/FixCursorHold.nvim',
@@ -84,6 +85,7 @@ return {
               adapter = 'lldb',
             },
           },
+          require 'neotest-golang' {},
         },
         status = { virtual_text = true },
         output = { open_on_run = true, close_on_exit = true },

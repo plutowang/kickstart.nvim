@@ -6,7 +6,7 @@ return {
       'neovim/nvim-lspconfig',
       'nvim-treesitter/nvim-treesitter',
     },
-    -- event = { 'BufAdd' },
+    event = { 'BufAdd' },
     event = { 'CmdlineEnter' },
     ft = { 'go', 'gomod' },
     -- config = function(lp, opts)

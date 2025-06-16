@@ -698,7 +698,7 @@ require('lazy').setup({
         -- ts_ls = {},
         --
         angularls = {
-          root_dir = util.root_pattern('angular.json', 'nx.json'),
+          root_dir = util.root_pattern('angular.json', 'nx.json', 'project.json'),
         },
         astro = {},
         clangd = {},

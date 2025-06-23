@@ -700,6 +700,7 @@ require('lazy').setup({
         angularls = {
           root_dir = util.root_pattern('angular.json', 'nx.json', 'project.json'),
         },
+        graphql = {},
         astro = {},
         clangd = {},
         eslint = {},

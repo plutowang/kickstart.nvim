@@ -631,9 +631,18 @@ require('lazy').setup({
           --
           -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
+            -- Enable inlay hints for this buffer
+            vim.lsp.inlay_hint.enable(true)
+            local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })
+            print("Inlay hints " .. (enabled and "enabled" or "disabled") .. " for " .. (client.name or "unknown"))
+
+            map('<leader>th', 
+              function()
+                local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })
+                vim.lsp.inlay_hint.enable(not enabled, { bufnr = event.buf })
+                print("Inlay hints " .. (not enabled and "enabled" or "disabled") .. " for " .. (client.name or "unknown"))
+              end, 
+            '[T]oggle Inlay [H]ints')
           end
         end,
       })
@@ -700,11 +709,22 @@ require('lazy').setup({
         angularls = {
           root_dir = util.root_pattern('angular.json', 'nx.json', 'project.json'),
         },
-        graphql = {},
+        -- =================================================================================
+        -- ‼️ GraphQL LSP configuration
+        -- Requires a .graphqlrc.json file in project root with schema and documents paths:
+        -- {
+        --   "schema": "[graphql-schema]/*.graphql",
+        --   "documents": ["apps/**/*.graphql", "libs/**/*.graphql"]
+        -- }
+        -- =================================================================================
+        graphql = {
+          -- Use default configuration, automatically detects .graphqlrc.json
+        },
         astro = {},
         clangd = {},
         eslint = {},
         gopls = {
+          filetypes = { 'go', 'mod' },
           settings = {
             gopls = {
               hints = {
@@ -716,12 +736,29 @@ require('lazy').setup({
                 parameterNames = true,
                 rangeVariableTypes = true,
               },
+              -- Additional gopls settings
+              gofumpt = true,
+              codelenses = {
+                gc_details = false,
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+              },
+              usePlaceholders = true,
+              completeUnimported = true,
+              staticcheck = true,
+              directoryFilters = { "-.git", "-node_modules" },
             },
           },
         },
         html = {},
         pyright = {},
         rust_analyzer = {
+          filetypes = { 'rust' },
           settings = {
             ['rust-analyzer'] = {
               cargo = {
@@ -775,23 +812,23 @@ require('lazy').setup({
         },
         ts_ls = {},
         zls = {
+          filetypes = { 'zig', 'zon' },
+          -- https://zigtools.org/zls/releases/0.12.0/
+          -- https://github.com/zigtools/zls/blob/master/src/Config.zig
           settings = {
             zls = {
+              force_autofix = true,
               enable_build_on_save = true,
-              enable_autofix = true,
-              enable_argument_placeholders = true,
-
               enable_inlay_hints = true,
-              inlay_hints_show_variable_type_hints = true,
-              inlay_hints_show_parameter_name = true,
               inlay_hints_show_builtin = true,
-              inlay_hints_exclude_single_argument = false,
-              inlay_hints_hide_redundant_param_names = true,
-              inlay_hints_hide_redundant_param_names_last_token = false,
-              include_at_in_builtins = true,
-              warn_style = true,
+              inlay_hints_exclude_single_argument = true,
+              inlay_hints_hide_redundant_param_names = false,
+              inlay_hints_hide_redundant_param_names_last_token = true,
+              inlay_hints_show_parameter_name = true,
+              inlay_hints_show_variable_type_hints = true,
+              enable_argument_placeholders = true,
               highlight_global_var_declarations = true,
-              dangerous_comptime_experiments_do_not_enable = true,
+              warn_style = true,
               skip_std_references = true,
             },
           },
@@ -831,6 +868,8 @@ require('lazy').setup({
         'prettier',
         'ast-grep',
         'markdownlint',
+        'zls',
+        'graphql-language-service-cli',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

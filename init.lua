@@ -367,7 +367,21 @@ require('lazy').setup({
 
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
+    keys = {
+      { '<leader>sh', desc = '[S]earch [H]elp' },
+      { '<leader>sk', desc = '[S]earch [K]eymaps' },
+      { '<leader>sf', desc = '[S]earch [F]iles' },
+      { '<leader>ss', desc = '[S]earch [S]elect Telescope' },
+      { '<leader>sw', desc = '[S]earch current [W]ord' },
+      { '<leader>sg', desc = '[S]earch by [G]rep' },
+      { '<leader>sd', desc = '[S]earch [D]iagnostics' },
+      { '<leader>sr', desc = '[S]earch [R]esume' },
+      { '<leader>s.', desc = '[S]earch Recent Files' },
+      { '<leader><leader>', desc = '[ ] Find existing buffers' },
+      { '<leader>/', desc = '[/] Fuzzily search in current buffer' },
+      { '<leader>s/', desc = '[S]earch [/] in Open Files' },
+      { '<leader>sn', desc = '[S]earch [N]eovim files' },
+    },
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -705,7 +719,8 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
-        --
+        -- pyright = {},
+        -- eslint = {},
         angularls = {
           root_dir = util.root_pattern('angular.json', 'nx.json', 'project.json'),
         },
@@ -721,8 +736,6 @@ require('lazy').setup({
           -- Use default configuration, automatically detects .graphqlrc.json
         },
         astro = {},
-        clangd = {},
-        eslint = {},
         gopls = {
           filetypes = { 'go', 'mod' },
           settings = {
@@ -756,7 +769,6 @@ require('lazy').setup({
           },
         },
         html = {},
-        pyright = {},
         rust_analyzer = {
           filetypes = { 'rust' },
           settings = {
@@ -864,10 +876,9 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
+        'stylua',
         'prettier',
         'ast-grep',
-        'markdownlint',
         'zls',
         'graphql-language-service-cli',
       })

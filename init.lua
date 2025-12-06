@@ -782,10 +782,17 @@ require('lazy').setup({
                 },
               },
               -- Add clippy lints for Rust.
-              checkOnSave = {
+              checkOnSave = true,
+              check = {
                 allFeatures = true,
-                command = 'clippy',
-                extraArgs = { '--no-deps' },
+                overrideCommand = { 
+                  'cargo',
+                  'clippy',
+                  '--workspace',
+                  '--message-format=json',
+                  '--all-targets',
+                  '--no-deps'
+                },
               },
               procMacro = {
                 enable = true,
@@ -800,6 +807,7 @@ require('lazy').setup({
                   enable = true,
                 },
               },
+              -- https://rust-analyzer.github.io/book/configuration.html#inlayHints
               inlayHints = {
                 closureCaptureHints = {
                   enable = true,
@@ -884,20 +892,17 @@ require('lazy').setup({
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      -- Mason v2.0+ https://github.com/mason-org/mason-lspconfig.nvim/releases/tag/v2.0.0
+      -- removed the `handlers` setting and `.setup_handlers()` function
       require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
+        ensure_installed = vim.tbl_keys(servers),
+        automatic_enable = true,
       }
+
+      for server_name, server_config in pairs(servers) do
+        server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
+        vim.lsp.config(server_name, server_config)
+      end
     end,
   },
 

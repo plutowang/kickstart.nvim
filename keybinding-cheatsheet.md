@@ -207,6 +207,23 @@
 | `m{a-z}` | Set mark                            |
 | `'{a-z}` | Jump to mark                        |
 
+### Bracket & Quote Navigation
+| Key  | Action                              |
+| ---- | ----------------------------------- |
+| `%`  | Jump to matching bracket/paren      |
+| `[{` | Previous unmatched opening `{`      |
+| `]}` | Next unmatched closing `}`          |
+| `[(` | Previous unmatched opening `(`      |
+| `])` | Next unmatched closing `)`          |
+| `[%` | Previous unmatched opening bracket  |
+| `]%` | Next unmatched closing bracket      |
+| `f"` | Find next `"` on current line       |
+| `F"` | Find previous `"` on current line   |
+| `t"` | Till next `"` (stops before it)     |
+| `T"` | Till previous `"` (stops before it) |
+| `;`  | Repeat last f/F/t/T command         |
+| `,`  | Repeat last f/F/t/T opposite dir    |
+
 ### Search & Replace
 | Key/Command      | Action                                   |
 | ---------------- | ---------------------------------------- |

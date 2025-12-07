@@ -1,7 +1,8 @@
 # Neovim Keybinding Cheatsheet
 
-*Leader key: `<Space>`*
-*Note: `<C-*>` means `<Ctrl-*>`*
+- *Leader key: `<Space>`*
+
+- *Note: `<C-*>` means `<Ctrl-*>`*
 
 ## 📂 File & Buffer Management
 

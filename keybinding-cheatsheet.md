@@ -1,6 +1,7 @@
 # Neovim Keybinding Cheatsheet
 
 *Leader key: `<Space>`*
+*Note: `<C-*>` means `<Ctrl-*>`*
 
 ## 📂 File & Buffer Management
 
@@ -9,9 +10,9 @@
 | ------------- | -------------------------- |
 | `<leader>1-9` | Go to buffer 1-9           |
 | `<leader>0`   | Go to last buffer          |
-| `<Ctrl+h>`    | Previous buffer            |
-| `<Ctrl+l>`    | Next buffer                |
-| `<Ctrl+x>`    | Close buffer               |
+| `<C-h>`       | Previous buffer            |
+| `<C-l>`       | Next buffer                |
+| `<C-x>`       | Close buffer               |
 | `<Alt+h>`     | Move buffer left           |
 | `<Alt+l>`     | Move buffer right          |
 | `<leader>od`  | Order buffers by directory |
@@ -45,13 +46,13 @@
 | `<leader>sn`       | Search Neovim config files     |
 
 ### Flash (Quick Navigation)
-| Key        | Action                             |
-| ---------- | ---------------------------------- |
-| `s`        | Flash jump                         |
-| `S`        | Flash treesitter                   |
-| `r`        | Remote flash (operator mode)       |
-| `R`        | Treesitter search                  |
-| `<Ctrl+s>` | Toggle flash search (command mode) |
+| Key     | Action                             |
+| ------- | ---------------------------------- |
+| `s`     | Flash jump                         |
+| `S`     | Flash treesitter                   |
+| `r`     | Remote flash (operator mode)       |
+| `R`     | Treesitter search                  |
+| `<C-s>` | Toggle flash search (command mode) |
 
 ## 🖥️ Terminal
 
@@ -116,12 +117,12 @@
 ## 🪟 Window Management
 
 ### Window Navigation
-| Key        | Action               |
-| ---------- | -------------------- |
-| `<Ctrl+h>` | Move to left window  |
-| `<Ctrl+l>` | Move to right window |
-| `<Ctrl+j>` | Move to lower window |
-| `<Ctrl+k>` | Move to upper window |
+| Key          | Action               |
+| ------------ | -------------------- |
+| `<C-w><C-h>` | Move to left window  |
+| `<C-w><C-l>` | Move to right window |
+| `<C-w><C-j>` | Move to lower window |
+| `<C-w><C-k>` | Move to upper window |
 
 ## ⌨️ Basic Editing
 
@@ -132,16 +133,102 @@
 | `<leader>q`  | Open diagnostic quickfix list |
 | `<Esc><Esc>` | Exit terminal mode            |
 
+### Recording & Macros
+| Key  | Action                    |
+| ---- | ------------------------- |
+| `qa` | Start recording macro 'a' |
+| `q`  | Stop recording macro      |
+| `@a` | Execute macro 'a'         |
+| `@@` | Repeat last macro         |
+
+### Spelling
+| Key   | Action                       |
+| ----- | ---------------------------- |
+| `z=`  | Suggest spelling corrections |
+| `zg`  | Add word to dictionary       |
+| `zw`  | Mark word as misspelled      |
+| `]s`  | Next misspelled word         |
+| `[s`  | Previous misspelled word     |
+| `zug` | Remove word from dictionary  |
+
+### Text Objects (Treesitter)
+| Key  | Action                      |
+| ---- | --------------------------- |
+| `am` | Select [A]round [M]ethod    |
+| `im` | Select [I]nside [M]ethod    |
+| `ac` | Select [A]round [C]lass     |
+| `ic` | Select [I]nside [C]lass     |
+| `aa` | Select [A]round P[a]rameter |
+| `ia` | Select [I]nside P[a]rameter |
+| `ab` | Select [A]round [B]lock     |
+| `ib` | Select [I]nside [B]lock     |
+
+### Text Object Movement
+| Key  | Action                     |
+| ---- | -------------------------- |
+| `]m` | Next [m]ethod start        |
+| `[m` | Previous [m]ethod start    |
+| `]M` | Next [M]ethod end          |
+| `[M` | Previous [M]ethod end      |
+| `]]` | Next class start           |
+| `[[` | Previous class start       |
+| `][` | Next class end             |
+| `[]` | Previous class end         |
+| `]a` | Next p[a]rameter start     |
+| `[a` | Previous p[a]rameter start |
+| `]A` | Next p[A]rameter end       |
+| `[A` | Previous p[A]rameter end   |
+| `]b` | Next [b]lock start         |
+| `[b` | Previous [b]lock start     |
+| `]B` | Next [B]lock end           |
+| `[B` | Previous [B]lock end       |
+
+### Text Object Swapping
+| Key          | Action                           |
+| ------------ | -------------------------------- |
+| `<leader>sa` | [S]wap p[a]rameter with next     |
+| `<leader>sA` | [S]wap p[A]rameter with previous |
+| `<leader>sm` | [S]wap [M]ethod with next        |
+| `<leader>sM` | [S]wap [M]ethod with previous    |
+
+### Additional Vim Operations
+| Key      | Action                              |
+| -------- | ----------------------------------- |
+| `u`      | Undo                                |
+| `<C-r>`  | Redo                                |
+| `.`      | Repeat last command                 |
+| `*`      | Search word under cursor            |
+| `#`      | Search word under cursor (backward) |
+| `%`      | Jump to matching bracket            |
+| `gf`     | Go to file under cursor             |
+| `<C-o>`  | Jump to previous location           |
+| `<C-i>`  | Jump to next location               |
+| `m{a-z}` | Set mark                            |
+| `'{a-z}` | Jump to mark                        |
+
+### Search & Replace
+| Key/Command      | Action                                   |
+| ---------------- | ---------------------------------------- |
+| `/pattern`       | Search forward for pattern               |
+| `?pattern`       | Search backward for pattern              |
+| `n`              | Next search match                        |
+| `N`              | Previous search match                    |
+| `:s/old/new/`    | Replace first occurrence in current line |
+| `:s/old/new/g`   | Replace all occurrences in current line  |
+| `:%s/old/new/g`  | Replace all occurrences in file          |
+| `:%s/old/new/gc` | Replace all with confirmation            |
+| `:noh`           | Clear search highlights                  |
+
 ### Completion (Blink.cmp)
-| Key                 | Action                        |
-| ------------------- | ----------------------------- |
-| `<Ctrl+y>`          | Accept completion             |
-| `<Tab>/<S-Tab>`     | Navigate snippet placeholders |
-| `<Ctrl+Space>`      | Open completion menu          |
-| `<Ctrl+n>/<Ctrl+p>` | Select next/previous item     |
-| `<Up>/<Down>`       | Select next/previous item     |
-| `<Ctrl+e>`          | Hide completion menu          |
-| `<Ctrl+k>`          | Toggle signature help         |
+| Key             | Action                        |
+| --------------- | ----------------------------- |
+| `<C-y>`         | Accept completion             |
+| `<Tab>/<S-Tab>` | Navigate snippet placeholders |
+| `<C-Space>`     | Open completion menu          |
+| `<C-n>/<C-p>`   | Select next/previous item     |
+| `<Up>/<Down>`   | Select next/previous item     |
+| `<C-e>`         | Hide completion menu          |
+| `<C-k>`         | Toggle signature help         |
 
 ## 🎨 UI & Display
 
@@ -173,5 +260,3 @@
 - Spell checking enabled for text files only
 
 ---
-
-*Note: All keybindings use `<Space>` as the leader key. Some plugins may have additional keybindings available through their interfaces.*

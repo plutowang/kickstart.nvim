@@ -1,5 +1,7 @@
 # kickstart.nvim
 
+![Startup Time](https://img.shields.io/badge/Startup%20Time-~75ms-brightgreen?style=flat-square&logo=neovim&logoColor=white)
+
 ## Introduction
 
 A starting point for Neovim that is:

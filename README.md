@@ -1,6 +1,8 @@
 # kickstart.nvim
 
 ![Startup Time](https://img.shields.io/badge/Startup%20Time-~75ms-brightgreen?style=flat-square&logo=neovim&logoColor=white)
+[![Prerequisites](https://img.shields.io/badge/📋-Prerequisites-blue?style=flat-square)](prerequisites.md)
+[![Keybindings](https://img.shields.io/badge/⌨️-Keybindings-purple?style=flat-square)](keybinding-cheatsheet.md)
 
 ## Introduction
 

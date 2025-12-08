@@ -254,7 +254,11 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+  {
+    'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {},
+  },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -505,6 +509,7 @@ require('lazy').setup({
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
@@ -648,16 +653,14 @@ require('lazy').setup({
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
             -- Enable inlay hints for this buffer
             vim.lsp.inlay_hint.enable(true)
-            local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })
-            print("Inlay hints " .. (enabled and "enabled" or "disabled") .. " for " .. (client.name or "unknown"))
+            local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
+            print('Inlay hints ' .. (enabled and 'enabled' or 'disabled') .. ' for ' .. (client.name or 'unknown'))
 
-            map('<leader>th', 
-              function()
-                local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })
-                vim.lsp.inlay_hint.enable(not enabled, { bufnr = event.buf })
-                print("Inlay hints " .. (not enabled and "enabled" or "disabled") .. " for " .. (client.name or "unknown"))
-              end, 
-            '[T]oggle Inlay [H]ints')
+            map('<leader>th', function()
+              local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
+              vim.lsp.inlay_hint.enable(not enabled, { bufnr = event.buf })
+              print('Inlay hints ' .. (not enabled and 'enabled' or 'disabled') .. ' for ' .. (client.name or 'unknown'))
+            end, '[T]oggle Inlay [H]ints')
           end
         end,
       })
@@ -765,7 +768,7 @@ require('lazy').setup({
               usePlaceholders = true,
               completeUnimported = true,
               staticcheck = true,
-              directoryFilters = { "-.git", "-node_modules" },
+              directoryFilters = { '-.git', '-node_modules' },
             },
           },
         },
@@ -786,13 +789,13 @@ require('lazy').setup({
               checkOnSave = true,
               check = {
                 allFeatures = true,
-                overrideCommand = { 
+                overrideCommand = {
                   'cargo',
                   'clippy',
                   '--workspace',
                   '--message-format=json',
                   '--all-targets',
-                  '--no-deps'
+                  '--no-deps',
                 },
               },
               procMacro = {
@@ -1171,6 +1174,7 @@ require('lazy').setup({
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       -- Better Around/Inside textobjects
       --

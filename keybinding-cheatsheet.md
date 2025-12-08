@@ -110,6 +110,23 @@
 
 ### Git
 
+#### Gitsigns
+| Key          | Action                         |
+| ------------ | ------------------------------ |
+| `]c`         | Jump to next git [c]hange      |
+| `[c`         | Jump to previous git [c]hange  |
+| `<leader>hs` | Git [s]tage hunk               |
+| `<leader>hr` | Git [r]eset hunk               |
+| `<leader>hS` | Git [S]tage buffer             |
+| `<leader>hu` | Git [u]ndo stage hunk          |
+| `<leader>hR` | Git [R]eset buffer             |
+| `<leader>hp` | Git [p]review hunk             |
+| `<leader>hb` | Git [b]lame line               |
+| `<leader>hd` | Git [d]iff against index       |
+| `<leader>hD` | Git [D]iff against last commit |
+| `<leader>tb` | [T]oggle git show [b]lame line |
+| `<leader>tD` | [T]oggle git show [D]eleted    |
+
 #### LazyGit
 | Key          | Action       |
 | ------------ | ------------ |

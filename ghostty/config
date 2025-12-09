@@ -34,7 +34,6 @@ background-opacity = 0.97
 background-blur-radius = 20
 
 # Font configuration for crisp readability
-font-family = "JetBrains Mono"
 font-size = 13
 font-feature = +calt,+liga
 

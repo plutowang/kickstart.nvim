@@ -654,12 +654,10 @@ require('lazy').setup({
             -- Enable inlay hints for this buffer
             vim.lsp.inlay_hint.enable(true)
             local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
-            print('Inlay hints ' .. (enabled and 'enabled' or 'disabled') .. ' for ' .. (client.name or 'unknown'))
 
             map('<leader>th', function()
               local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
               vim.lsp.inlay_hint.enable(not enabled, { bufnr = event.buf })
-              print('Inlay hints ' .. (not enabled and 'enabled' or 'disabled') .. ' for ' .. (client.name or 'unknown'))
             end, '[T]oggle Inlay [H]ints')
           end
         end,

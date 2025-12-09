@@ -5,6 +5,9 @@ return {
     priority = 1000,
     config = function()
       vim.opt.background = 'light'
+      -- Disable recording messages at bottom
+      vim.opt.shortmess:append 'q'
+
       require('catppuccin').setup {
         flavour = 'latte', -- Force latte for consistent light theme
         background = { -- :h background
@@ -146,6 +149,19 @@ return {
             always_visible = false,
             update_in_insert = false,
           },
+          {
+            function()
+              local recording_register = vim.fn.reg_recording()
+              if recording_register == '' then
+                return ''
+              else
+                return '󰑋 ' .. recording_register
+              end
+            end,
+            color = { fg = '#eff1f5', bg = '#e78284', style = 'bold' }, -- white text on red background
+            separator = { left = '', right = '' }, -- rounded separators
+            padding = { left = 1, right = 1 },
+          },
         },
         lualine_x = {
           {
@@ -172,7 +188,7 @@ return {
             end,
           },
         },
-        lualine_y = { 'filetype', 'progress' },
+        lualine_y = { 'encoding', 'fileformat', 'filetype', 'progress' },
         lualine_z = {
           { 'location', separator = { right = '' }, left_padding = 2 },
         },

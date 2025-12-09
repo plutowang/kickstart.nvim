@@ -68,18 +68,20 @@
 ## 🔧 Development Tools
 
 ### LSP (Language Server)
-| Key          | Action                |
-| ------------ | --------------------- |
-| `grn`        | Rename symbol         |
-| `gra`        | Code Action           |
-| `grr`        | Go to References      |
-| `gri`        | Go to Implementation  |
-| `grd`        | Go to Definition      |
-| `grD`        | Go to Declaration     |
-| `gO`         | Document Symbols      |
-| `gW`         | Workspace Symbols     |
-| `grt`        | Go to Type Definition |
-| `<leader>th` | Toggle Inlay Hints    |
+| Key          | Action                         |
+| ------------ | ------------------------------ |
+| `grn`        | Rename symbol                  |
+| `gra`        | Code Action                    |
+| `grr`        | Go to References               |
+| `gri`        | Go to Implementation           |
+| `grd`        | Go to Definition               |
+| `grD`        | Go to Declaration              |
+| `gO`         | Document Symbols               |
+| `gW`         | Workspace Symbols              |
+| `grt`        | Go to Type Definition          |
+| `<leader>th` | Toggle Inlay Hints             |
+| `<leader>e`  | Show diagnostic Error messages |
+| `<leader>q`  | Open diagnostic Quickfix list  |
 
 ### Formatting
 | Key         | Action        |
@@ -141,6 +143,20 @@
 | `<C-w><C-l>` | Move to right window |
 | `<C-w><C-j>` | Move to lower window |
 | `<C-w><C-k>` | Move to upper window |
+
+### Code Folding
+| Key  | Action                         |
+| ---- | ------------------------------ |
+| `za` | Toggle fold under cursor       |
+| `zc` | Close fold under cursor        |
+| `zo` | Open fold under cursor         |
+| `zC` | Close all folds recursively    |
+| `zO` | Open all folds recursively     |
+| `zM` | Close all folds in buffer      |
+| `zR` | Open all folds in buffer       |
+| `zi` | Toggle folding on/off globally |
+| `zj` | Move to next fold              |
+| `zk` | Move to previous fold          |
 
 ## ⌨️ Basic Editing
 

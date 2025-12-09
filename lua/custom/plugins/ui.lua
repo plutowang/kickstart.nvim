@@ -113,36 +113,68 @@ return {
       options = {
         icons_enabled = true,
         theme = 'catppuccin',
-        component_separators = { left = '', right = '' }, -- Use rounded separators
-        section_separators = { left = '', right = '' }, -- Use rounded separators
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         extensions = { 'lazy', 'mason', 'neo-tree', 'nvim-dap-ui', 'toggleterm' },
-        globalstatus = true, -- Global statusline for better visual unity
+        globalstatus = true,
         disabled_filetypes = {
           statusline = {},
           winbar = {},
         },
       },
       sections = {
-        lualine_a = { 
-          { 'mode', separator = { left = '' }, right_padding = 2 } 
+        lualine_a = {
+          { 'mode', separator = { left = '' }, right_padding = 2 },
         },
         lualine_b = { 'filename', 'branch' },
         lualine_c = {
           {
             'diagnostics',
             sources = { 'nvim_diagnostic' },
-            symbols = { error = ' ', warn = ' ', info = ' ' },
+            symbols = {
+              error = '󰅚 ',
+              warn = '󰀪 ',
+              info = '󰋽 ',
+              hint = '󰌶 ',
+            },
+            diagnostics_color = {
+              error = { fg = '#e78284' }, -- red from catppuccin latte
+              warn = { fg = '#e5c890' }, -- yellow from catppuccin latte
+              info = { fg = '#99d1db' }, -- sky from catppuccin latte
+              hint = { fg = '#81c8be' }, -- teal from catppuccin latte
+            },
+            always_visible = false,
+            update_in_insert = false,
           },
         },
         lualine_x = {
           {
             'diff',
-            symbols = { added = ' ', modified = ' ', removed = ' ' },
+            symbols = {
+              added = '󰐕 ',
+              modified = '󰏫 ',
+              removed = '󰍴 ',
+            },
+            diff_color = {
+              added = { fg = '#a6d189' }, -- green from catppuccin latte
+              modified = { fg = '#e5c890' }, -- yellow from catppuccin latte
+              removed = { fg = '#e78284' }, -- red from catppuccin latte
+            },
+            source = function()
+              local gitsigns = vim.b.gitsigns_status_dict
+              if gitsigns then
+                return {
+                  added = gitsigns.added,
+                  modified = gitsigns.changed,
+                  removed = gitsigns.removed,
+                }
+              end
+            end,
           },
         },
         lualine_y = { 'filetype', 'progress' },
-        lualine_z = { 
-          { 'location', separator = { right = '' }, left_padding = 2 } 
+        lualine_z = {
+          { 'location', separator = { right = '' }, left_padding = 2 },
         },
       },
       inactive_sections = {

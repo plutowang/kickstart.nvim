@@ -1145,46 +1145,21 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
-  { -- Highlight, edit, and navigate code
+  { -- Deprecated: Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    branch = 'master',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
+      -- Use :TSInstall! angular astro bash c diff cpp css go graphql html http javascript json lua luadoc markdown markdown_inline query python rust toml tsx typescript vim vimdoc xml yaml zig git_config gitcommit git_rebase gitignore gitattributes
       ensure_installed = {
-        'angular',
-        'astro',
-        'bash',
-        'c',
-        'diff',
-        'cpp',
-        'css',
-        'go',
-        'graphql',
-        'html',
-        'http',
-        'javascript',
-        'json',
-        'lua',
-        'luadoc',
-        'markdown',
-        'markdown_inline',
-        'query',
-        'python',
-        'rust',
-        'toml',
-        'tsx',
-        'typescript',
-        'vim',
-        'vimdoc',
-        'xml',
-        'yaml',
-        'zig',
-        'git_config',
-        'gitcommit',
-        'git_rebase',
-        'gitignore',
-        'gitattributes',
+        'angular', 'astro', 'bash', 'c', 'diff', 'cpp',
+        'css', 'go', 'graphql', 'html', 'http', 'javascript',
+        'json', 'lua', 'luadoc', 'markdown', 'markdown_inline',
+        'query', 'python', 'rust', 'toml', 'tsx', 'typescript',
+        'vim', 'vimdoc', 'xml', 'yaml', 'zig', 'git_config',
+        'gitcommit', 'git_rebase', 'gitignore', 'gitattributes',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -1204,6 +1179,23 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+  -- { -- TODO: Migrate to next version
+  -- -- Highlight, edit, and navigate code
+  --   'nvim-treesitter/nvim-treesitter',
+  --   branch = 'main',
+  --   build = ':TSUpdate',
+  --   config = function()
+  --     -- Install parsers manually when needed
+  --     -- Use :TSInstall! css go graphql html http javascript json lua luadoc markdown markdown_inline query python rust toml tsx typescript vim vimdoc xml yaml zig git_config gitcommit git_rebase gitignore gitattributes
+  --     require('nvim-treesitter').install({ 
+  --       'css', 'go', 'graphql', 'html', 'http', 'javascript',
+  --       'json', 'lua', 'luadoc', 'markdown', 'markdown_inline',
+  --       'query', 'python', 'rust', 'toml', 'tsx', 'typescript',
+  --       'vim', 'vimdoc', 'xml', 'yaml', 'zig', 'git_config',
+  --       'gitcommit', 'git_rebase', 'gitignore', 'gitattributes',
+  --     })
+  --   end,
+  -- },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and

@@ -20,7 +20,7 @@ return {
         dim_inactive = {
           enabled = true, -- Enable dimming for better focus
           shade = 'light', -- Use light shade for light theme
-          percentage = 0.10, -- Subtle dimming
+          percentage = 0.15,
         },
         no_italic = false,
         no_bold = false,
@@ -43,7 +43,8 @@ return {
         integrations = {
           cmp = true,
           gitsigns = true,
-          nvimtree = true,
+          nvimtree = false, -- We use neo-tree instead
+          neo_tree = true,
           treesitter = true,
           treesitter_context = true,
           notify = true, -- Enable notify integration
@@ -53,8 +54,10 @@ return {
           },
           barbar = true,
           mason = true,
-          neotree = true,
-          telescope = { enabled = true },
+          telescope = {
+            enabled = true,
+            style = 'nvchad',
+          },
           which_key = true,
           flash = true,
           lsp_trouble = true,
@@ -64,6 +67,14 @@ return {
             scope_color = 'lavender',
             colored_indent_levels = false,
           },
+          -- Add more integrations for better consistency
+          dap = { enabled = true, enable_ui = true },
+          headlines = true,
+          leap = true,
+          markdown = true,
+          neotest = true,
+          noice = true,
+          semantic_tokens = true,
         },
         custom_highlights = function(colors)
           return {
@@ -121,7 +132,7 @@ return {
         theme = 'catppuccin',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
-        extensions = { 'lazy', 'mason', 'neo-tree', 'nvim-dap-ui', 'toggleterm' },
+        extensions = { 'lazy', 'mason', 'neo-tree', 'nvim-dap-ui', 'toggleterm', 'trouble' },
         globalstatus = true,
         disabled_filetypes = {
           statusline = {},

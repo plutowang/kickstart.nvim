@@ -2,12 +2,17 @@ return {
   {
     -- Alternative to tailwindcss-colorizer-cmp for blink.cmp
     'NvChad/nvim-colorizer.lua',
-    ft = { 'css', 'html', 'javascript', 'typescript', 'lua', 'vim', 'scss', 'less', 'javascriptreact', 'typescriptreact' },
+    ft = { 'css', 'scss', 'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+    cmd = { 'ColorizerToggle', 'ColorizerAttachToBuffer' },
     opts = {
       filetypes = {
-        '*', -- Enable for all filetypes
-        css = { names = false }, -- Disable named colors in CSS
-        html = { names = false },
+        'css',
+        'scss',
+        'html',
+        'javascript',
+        'typescript',
+        'javascriptreact',
+        'typescriptreact',
       },
       user_default_options = {
         RGB = true, -- #RGB hex codes

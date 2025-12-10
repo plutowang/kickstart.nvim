@@ -516,6 +516,7 @@ require('lazy').setup({
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
+    cmd = { 'Mason' },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
@@ -1187,7 +1188,7 @@ require('lazy').setup({
   --   config = function()
   --     -- Install parsers manually when needed
   --     -- Use :TSInstall! css go graphql html http javascript json lua luadoc markdown markdown_inline query python rust toml tsx typescript vim vimdoc xml yaml zig git_config gitcommit git_rebase gitignore gitattributes
-  --     require('nvim-treesitter').install({ 
+  --     require('nvim-treesitter').install({
   --       'css', 'go', 'graphql', 'html', 'http', 'javascript',
   --       'json', 'lua', 'luadoc', 'markdown', 'markdown_inline',
   --       'query', 'python', 'rust', 'toml', 'tsx', 'typescript',
@@ -1224,6 +1225,15 @@ require('lazy').setup({
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
 }, {
+  -- Performance optimizations
+  defaults = {
+    lazy = true, -- Make all plugins lazy by default
+  },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+  },
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table

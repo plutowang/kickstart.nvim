@@ -1,6 +1,6 @@
 return {
   'sphamba/smear-cursor.nvim',
-  event = 'VeryLazy',
+  event = { 'CursorMoved', 'CursorMovedI' },
   opts = {
     -- Cursor movement smoothness (faster settings)
     stiffness = 0.95, -- How fast the smear's head moves towards target [0, 1]
@@ -25,7 +25,7 @@ return {
     time_interval = 17, -- Animation framerate (60fps)
     max_length = 25, -- Maximum smear length for better tail
     max_length_insert_mode = 8, -- Longer smear in insert mode
-    
+
     -- Color and visual enhancements for better tail
     color_levels = 24, -- More color gradation levels for smoother tail
     gamma = 2.2, -- Color blending gamma for better tail colors
@@ -33,7 +33,7 @@ return {
     trailing_exponent = 1.5, -- Smoother tail fade curve
     volume_reduction_exponent = 0.2, -- Less aggressive volume reduction for fuller tail
     minimum_volume_factor = 0.8, -- Higher minimum volume for more visible tail
-    
+
     -- Enhanced legacy computing symbols for better visuals
     legacy_computing_symbols_support = false, -- Set to true if font supports block symbols
     use_diagonal_blocks = true, -- Better diagonal rendering

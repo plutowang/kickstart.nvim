@@ -54,9 +54,6 @@ vim.opt.foldnestmax = 4 -- Limit fold nesting
 vim.opt.gdefault = true -- Global replace by default
 vim.opt.inccommand = 'nosplit' -- Show effects of substitute command incrementally
 
--- ============================================================================
--- DISABLE UNUSED BUILTIN PLUGINS
--- ============================================================================
 local disabled_built_ins = {
   -- Archive formats (rarely needed)
   'gzip',
@@ -77,11 +74,16 @@ local disabled_built_ins = {
   'rrhelper',
   'spellfile_plugin',
   'matchit',
-  'matchparen',
   -- Health check (can be manually run when needed)
   'health',
   'man',
   'tutor_mode_plugin',
+  -- Additional plugins for faster startup
+  '2html_plugin',
+  'tohtml',
+  'logipat',
+  'compiler',
+  'bugreport',
 }
 
 for _, plugin in pairs(disabled_built_ins) do

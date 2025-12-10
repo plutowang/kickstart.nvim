@@ -2,7 +2,7 @@ return {
   { -- Autocompletion
     'saghen/blink.cmp',
     lazy = true,
-    event = { 'InsertEnter', 'CmdlineEnter' },
+    event = { 'InsertEnter' },
     version = '1.*',
     dependencies = {
       -- Snippet Engine
@@ -11,6 +11,7 @@ return {
         version = '2.*',
         lazy = true,
         event = { 'InsertEnter' },
+        cmd = { 'LuaSnipEdit' },
         build = (function()
           -- Build Step is needed for regex support in snippets.
           -- This step is not supported in many windows environments.
@@ -209,4 +210,3 @@ return {
     },
   },
 }
-

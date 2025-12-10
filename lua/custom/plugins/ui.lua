@@ -100,6 +100,9 @@ return {
             GitSignsAdd = { fg = colors.green },
             GitSignsChange = { fg = colors.yellow },
             GitSignsDelete = { fg = colors.red },
+            -- Enhanced indent guides
+            IblIndent = { fg = colors.surface1 },
+            IblScope = { fg = colors.lavender },
           }
         end,
       }

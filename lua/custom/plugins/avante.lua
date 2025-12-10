@@ -4,10 +4,10 @@ return {
     cmd = 'Copilot',
     event = 'InsertEnter',
     config = function()
-      require('copilot').setup({
+      require('copilot').setup {
         suggestion = { enabled = true },
         panel = { enabled = true },
-      })
+      }
     end,
   },
   {
@@ -22,7 +22,7 @@ return {
     -- ⚠️ must add this setting! ! !
     build = function()
       -- conditionally use the correct build system for the current OS
-      if vim.fn.has('win32') == 1 then
+      if vim.fn.has 'win32' == 1 then
         return 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
       else
         return 'make'
@@ -40,8 +40,8 @@ return {
     ---@type avante.Config
     opts = function()
       -- Check if Copilot is authenticated
-      local copilot_authenticated = vim.fn.filereadable(vim.fn.expand('~/.config/github-copilot/apps.json')) == 1
-      
+      local copilot_authenticated = vim.fn.filereadable(vim.fn.expand '~/.config/github-copilot/apps.json') == 1
+
       -- Use copilot if authenticated, otherwise fallback to ollama
       local default_provider = copilot_authenticated and 'copilot' or 'ollama'
       -- Build providers list based on authentication status
@@ -50,7 +50,7 @@ return {
           endpoint = 'http://localhost:11434',
           model = 'codellama:13b',
           timeout = 30000,
-          is_env_set = require("avante.providers.ollama").check_endpoint_alive,
+          is_env_set = require('avante.providers.ollama').check_endpoint_alive,
         },
       }
 
@@ -66,7 +66,7 @@ return {
           },
         }
       end
-      
+
       return {
         -- comment out to enable `agentic` mode
         -- mode = "legacy",
@@ -81,7 +81,7 @@ return {
       'nvim-lua/plenary.nvim',
       'MunifTanjim/nui.nvim',
       'nvim-telescope/telescope.nvim',
-      'hrsh7th/nvim-cmp',
+      'saghen/blink.cmp',
       'ibhagwan/fzf-lua',
       'stevearc/dressing.nvim',
       'folke/snacks.nvim',

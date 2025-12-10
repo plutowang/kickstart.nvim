@@ -114,6 +114,54 @@ return {
             -- Enhanced indent guides
             IblIndent = { fg = colors.surface1 },
             IblScope = { fg = colors.lavender },
+
+            -- Elegant Blink.cmp styling
+            -- Main completion menu
+            CmpMenu = { bg = colors.mantle, fg = colors.text },
+            CmpMenuBorder = { bg = colors.mantle, fg = colors.blue },
+            CmpMenuSel = { bg = colors.surface0, fg = colors.text, style = { 'bold' } },
+
+            -- Documentation window
+            CmpDocumentation = { bg = colors.mantle, fg = colors.text },
+            CmpDocumentationBorder = { bg = colors.mantle, fg = colors.lavender },
+            CmpDocumentationCursorLine = { bg = colors.surface0 },
+
+            -- Signature help
+            CmpSignatureHelp = { bg = colors.mantle, fg = colors.text },
+            CmpSignatureHelpBorder = { bg = colors.mantle, fg = colors.teal },
+
+            -- Completion item highlights
+            CmpItemAbbr = { fg = colors.text },
+            CmpItemAbbrMatch = { fg = colors.blue, style = { 'bold' } },
+            CmpItemAbbrMatchFuzzy = { fg = colors.sky, style = { 'bold' } },
+            CmpItemMenu = { fg = colors.overlay1, style = { 'italic' } },
+
+            -- Kind-specific highlights with colors
+            CmpItemKindText = { fg = colors.green },
+            CmpItemKindMethod = { fg = colors.blue },
+            CmpItemKindFunction = { fg = colors.blue },
+            CmpItemKindConstructor = { fg = colors.yellow },
+            CmpItemKindField = { fg = colors.teal },
+            CmpItemKindVariable = { fg = colors.mauve },
+            CmpItemKindClass = { fg = colors.yellow },
+            CmpItemKindInterface = { fg = colors.yellow },
+            CmpItemKindModule = { fg = colors.blue },
+            CmpItemKindProperty = { fg = colors.teal },
+            CmpItemKindUnit = { fg = colors.green },
+            CmpItemKindValue = { fg = colors.peach },
+            CmpItemKindEnum = { fg = colors.yellow },
+            CmpItemKindKeyword = { fg = colors.red },
+            CmpItemKindSnippet = { fg = colors.mauve },
+            CmpItemKindColor = { fg = colors.pink },
+            CmpItemKindFile = { fg = colors.blue },
+            CmpItemKindReference = { fg = colors.overlay2 },
+            CmpItemKindFolder = { fg = colors.blue },
+            CmpItemKindEnumMember = { fg = colors.teal },
+            CmpItemKindConstant = { fg = colors.peach },
+            CmpItemKindStruct = { fg = colors.yellow },
+            CmpItemKindEvent = { fg = colors.red },
+            CmpItemKindOperator = { fg = colors.sky },
+            CmpItemKindTypeParameter = { fg = colors.maroon },
           }
         end,
       }

@@ -48,6 +48,9 @@ local function setup_keymaps()
   -- Clear search highlighting
   map('n', '<leader>nh', '<cmd>nohl<cr>', { desc = 'Clear search highlight' })
 
+  -- Show file path
+  map('n', '<leader>fp', '<cmd>echo expand("%:p")<cr>', { desc = 'Show [F]ile [P]ath' })
+
   -- Toggle line wrapping
   map('n', '<leader>uw', '<cmd>set wrap!<cr>', { desc = 'Toggle line wrap' })
 

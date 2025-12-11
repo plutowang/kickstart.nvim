@@ -2,12 +2,30 @@ return {
   'folke/snacks.nvim',
   event = { 'BufReadPre', 'BufNewFile' },
   opts = {
+    -- Disabled features
+    git = { enabled = false },
+    dashboard = { enabled = false },
+    notifier = { enabled = false },
+    statuscolumn = { enabled = false },
+    words = { enabled = false },
+    styles = { enabled = false },
+    scratch = { enabled = false },
+    rename = { enabled = false },
+    animate = { enabled = false },
+    indent = { enabled = false },
+    input = { enabled = false },
+    picker = { enabled = false },
+    scope = { enabled = false },
+    toggle = { enabled = false },
+    win = { enabled = false },
+    zen = { enabled = false },
+
+    -- Enabled features
     bigfile = { enabled = true },
     quickfile = { enabled = true },
     lazygit = { enabled = true },
     scroll = { enabled = true },
     bufdelete = { enabled = true },
-    git = { enabled = false },
     terminal = {
       enabled = true,
       win = {

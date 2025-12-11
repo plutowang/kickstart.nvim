@@ -760,9 +760,7 @@ require('lazy').setup({
         -- ts_ls = {},
         -- pyright = {},
         -- eslint = {},
-        angularls = {
-          root_dir = util.root_pattern('angular.json', 'nx.json', 'project.json'),
-        },
+        angularls = {},
         -- =================================================================================
         -- ‼️ GraphQL LSP configuration
         -- Requires a .graphqlrc.json file in project root with schema and documents paths:

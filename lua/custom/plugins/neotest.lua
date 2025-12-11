@@ -88,7 +88,10 @@ return {
               adapter = 'lldb',
             },
           },
-          require 'neotest-golang' {},
+          require 'neotest-golang' {
+              -- disable test caching
+              extra_args = { "-count=1" },
+          },
         },
         status = { virtual_text = true },
         output = { open_on_run = true, close_on_exit = true },

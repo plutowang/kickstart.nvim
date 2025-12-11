@@ -56,13 +56,37 @@
 
 ## 🖥️ Terminal
 
-### ToggleTerm
+### Snacks Terminal
+| Key          | Action                        |
+| ------------ | ----------------------------- |
+| `<leader>tt` | Toggle Terminal (default)     |
+| `<leader>tf` | Toggle Terminal Float         |
+| `<leader>tp` | Terminal Python REPL (float)  |
+| `<leader>to` | Terminal Node REPL (float)    |
+| `<leader>ts` | Terminal Scratch Buffer       |
+| `<leader>tS` | Toggle Select Scratch Buffer  |
+| `q`          | Hide terminal (in terminal)   |
+
+### Buffer Operations (Snacks)
 | Key          | Action                     |
 | ------------ | -------------------------- |
-| `<leader>tt` | Toggle Terminal Horizontal |
-| `<leader>tv` | Toggle Terminal Vertical   |
-| `<leader>tf` | Toggle Terminal Float      |
-| `<leader>ts` | Send lines to Terminal     |
+| `<leader>bd` | Buffer Delete              |
+| `<leader>bD` | Buffer Delete Force        |
+| `<leader>bO` | Buffer Delete Others       |
+| `<leader>ba` | Buffer Delete All          |
+
+### Git Operations (Snacks)
+| Key          | Action                     |
+| ------------ | -------------------------- |
+| `<leader>gb` | Git Browse                 |
+| `<leader>gB` | Git Blame Line             |
+| `<leader>gl` | Git Log                    |
+| `<leader>gg` | Lazy Git                   |
+
+### File Operations (Snacks)
+| Key          | Action      |
+| ------------ | ----------- |
+| `<leader>ur` | Rename File |
 
 ## 🔧 Development Tools
 
@@ -140,11 +164,6 @@
 | `<leader>hD` | Git [D]iff against last commit |
 | `<leader>tb` | [T]oggle git show [b]lame line |
 | `<leader>tD` | [T]oggle git show [D]eleted    |
-
-#### LazyGit
-| Key          | Action       |
-| ------------ | ------------ |
-| `<leader>gl` | Open LazyGit |
 
 ## 🪟 Window Management
 

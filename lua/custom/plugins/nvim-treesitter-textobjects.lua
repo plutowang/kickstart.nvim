@@ -28,10 +28,11 @@ return {
       { '[b', desc = 'Previous [b]lock start' },
       { ']B', desc = 'Next [B]lock end' },
       { '[B', desc = 'Previous [B]lock end' },
-      { '<leader>sa', desc = '[S]wap p[a]rameter with next' },
-      { '<leader>sA', desc = '[S]wap p[A]rameter with previous' },
-      { '<leader>sm', desc = '[S]wap [M]ethod with next' },
-      { '<leader>sM', desc = '[S]wap [M]ethod with previous' },
+      { '<leader>cs', group = '[C]ode [S]wap' },
+      { '<leader>wa', desc = 'S[w]ap p[a]rameter with next' },
+      { '<leader>wA', desc = 'S[w]ap p[A]rameter with previous' },
+      { '<leader>wm', desc = 'S[w]ap [M]ethod with next' },
+      { '<leader>wM', desc = 'S[w]ap [M]ethod with previous' },
     },
     config = function()
       require('nvim-treesitter.configs').setup {
@@ -81,12 +82,12 @@ return {
           swap = {
             enable = true,
             swap_next = {
-              ['<leader>sa'] = { query = '@parameter.inner', desc = '[S]wap p[a]rameter with next' },
-              ['<leader>sm'] = { query = '@function.outer', desc = '[S]wap [M]ethod with next' },
+              ['<leader>wa'] = { query = '@parameter.inner', desc = 'S[w]ap p[a]rameter with next' },
+              ['<leader>wm'] = { query = '@function.outer', desc = 'S[w]ap [m]ethod with next' },
             },
             swap_previous = {
-              ['<leader>sA'] = { query = '@parameter.inner', desc = '[S]wap p[A]rameter with previous' },
-              ['<leader>sM'] = { query = '@function.outer', desc = '[S]wap [M]ethod with previous' },
+              ['<leader>wA'] = { query = '@parameter.inner', desc = 'S[w]ap p[A]rameter with previous' },
+              ['<leader>wM'] = { query = '@function.outer', desc = 'S[w]ap [M]ethod with previous' },
             },
           },
         },

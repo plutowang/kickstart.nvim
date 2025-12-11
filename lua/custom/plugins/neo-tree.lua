@@ -9,32 +9,32 @@ return {
     },
     keys = {
       {
-        '<leader>re',
+        '<leader>er',
         function()
           require('neo-tree.command').execute { toggle = true, dir = '/' }
         end,
-        desc = '[R]oot [E]xplorer NeoTree',
+        desc = '[E]xplorer [R]oot',
       },
       {
-        '<leader>fe',
+        '<leader>ef',
         function()
           require('neo-tree.command').execute { toggle = true, dir = vim.loop.cwd() }
         end,
-        desc = '[F]ile [E]xplorer NeoTree',
+        desc = '[E]xplorer [F]ile',
       },
       {
-        '<leader>ge',
+        '<leader>eg',
         function()
           require('neo-tree.command').execute { source = 'git_status', toggle = true }
         end,
-        desc = '[G]it [E]xplorer NeoTree',
+        desc = '[E]xplorer [G]it',
       },
       {
-        '<leader>be',
+        '<leader>eb',
         function()
           require('neo-tree.command').execute { source = 'buffers', toggle = true }
         end,
-        desc = '[B]uffer [E]xplorer NeoTree',
+        desc = '[E]xplorer [B]uffer',
       },
     },
     config = function()

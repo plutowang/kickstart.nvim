@@ -362,9 +362,61 @@ require('lazy').setup({
 
       -- Document existing key chains
       spec = {
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        -- == PRIMARY GROUPS ==
+        
+        -- Search & Find
+        { '<leader>s', group = '🔍 [S]earch' },
+        
+        -- File & Explorer Management  
+        { '<leader>f', group = '📂 [F]ile' },
+        { '<leader>e', group = '🌳 [E]xplorer' },
+        
+        -- Git & Version Control
+        { '<leader>g', group = '🔄 [G]it' },
+        { '<leader>h', group = '📝 Git [H]unk', mode = { 'n', 'v' } },
+        
+        -- Development & Code
+        { '<leader>c', group = '💻 [C]ode' },
+        { '<leader>r', group = '🏃 [R]un/Test' },
+        { '<leader>d', group = '🐛 [D]ebug/Database' },
+        { '<leader>x', group = '⚠️  Trouble/[X]' },
+        
+        -- == SECONDARY GROUPS ==
+        
+        -- Terminal & Tools
+        { '<leader>t', group = '🖥️  [T]erminal/Toggle' },
+        
+        -- UI & Settings
+        { '<leader>u', group = '⚙️  [U]I/Settings' },
+        
+        -- AI & Productivity
+        { '<leader>a', group = '🤖 [A]I Assistant' },
+        
+        -- Text Manipulation & Organization
+        { '<leader>w', group = '🔄 S[w]ap/Wrap' },
+        { '<leader>o', group = '📋 [O]rder/Organize' },
+        
+        -- Buffer Management
+        { '<leader>b', group = '📄 [B]uffer' },
+        
+        -- Clear & Reset Actions
+        { '<leader>n', group = '🚫 [N]o/Clear' },
+        
+        -- Tools & Utilities
+        { '<leader>l', group = '🔧 [L]azy/Tools' },
+        
+        -- == HIDDEN SHORTCUTS ==
+        -- Numbers (Buffer switching - hidden from menu)
+        { '<leader>1', hidden = true },
+        { '<leader>2', hidden = true },
+        { '<leader>3', hidden = true },
+        { '<leader>4', hidden = true },
+        { '<leader>5', hidden = true },
+        { '<leader>6', hidden = true },
+        { '<leader>7', hidden = true },
+        { '<leader>8', hidden = true },
+        { '<leader>9', hidden = true },
+        { '<leader>0', hidden = true },
       },
     },
   },
@@ -1153,9 +1205,9 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      -- Use :TSInstall! angular astro bash c diff cpp css go graphql html http javascript json lua luadoc markdown markdown_inline query python rust toml tsx typescript vim vimdoc xml yaml zig git_config gitcommit git_rebase gitignore gitattributes
+      -- Use :TSInstall! angular astro bash c sql diff cpp css go graphql html http javascript json lua luadoc markdown markdown_inline query python rust toml tsx typescript vim vimdoc xml yaml zig git_config gitcommit git_rebase gitignore gitattributes
       ensure_installed = {
-        'angular', 'astro', 'bash', 'c', 'diff', 'cpp',
+        'angular', 'astro', 'bash', 'c', 'diff', 'cpp', 'sql',
         'css', 'go', 'graphql', 'html', 'http', 'javascript',
         'json', 'lua', 'luadoc', 'markdown', 'markdown_inline',
         'query', 'python', 'rust', 'toml', 'tsx', 'typescript',

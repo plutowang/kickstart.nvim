@@ -89,12 +89,17 @@
 | `<leader>f` | Format buffer |
 
 ### Testing (Neotest)
-| Key           | Action             |
-| ------------- | ------------------ |
-| `<leader>rt`  | Test menu          |
-| `<leader>rtt` | Run File tests     |
-| `<leader>rtT` | Run All test files |
-| `<leader>rtr` | Run nearest test   |
+| Key          | Action               |
+| ------------ | -------------------- |
+| `<leader>rn` | Run Nearest test     |
+| `<leader>rf` | Run File tests       |
+| `<leader>ra` | Run All tests        |
+| `<leader>rl` | Run Last test        |
+| `<leader>rs` | Run Stop             |
+| `<leader>rt` | Run Toggle summary   |
+| `<leader>ro` | Run Output show      |
+| `<leader>rO` | Run Output panel     |
+| `<leader>rw` | Run Watch toggle     |
 
 ### Database (nvim-dbee)
 | Key          | Action             |
@@ -218,12 +223,12 @@
 | `[B` | Previous [B]lock end       |
 
 ### Text Object Swapping
-| Key          | Action                           |
-| ------------ | -------------------------------- |
-| `<leader>sa` | [S]wap p[a]rameter with next     |
-| `<leader>sA` | [S]wap p[A]rameter with previous |
-| `<leader>sm` | [S]wap [M]ethod with next        |
-| `<leader>sM` | [S]wap [M]ethod with previous    |
+| Key           | Action                           |
+| ------------- | -------------------------------- |
+| `<leader>csa` | [S]wap p[a]rameter with next     |
+| `<leader>csA` | [S]wap p[A]rameter with previous |
+| `<leader>csm` | [S]wap [M]ethod with next        |
+| `<leader>csM` | [S]wap [M]ethod with previous    |
 
 ### Additional Vim Operations
 | Key      | Action                              |
@@ -280,6 +285,25 @@
 | `<Up>/<Down>`   | Select next/previous item     |
 | `<C-e>`         | Hide completion menu          |
 | `<C-k>`         | Toggle signature help         |
+
+### Which-key Groups
+| Key          | Group                     |
+| ------------ | ------------------------- |
+| `<leader>s`  | [S]earch                  |
+| `<leader>t`  | [T]oggle                  |
+| `<leader>u`  | [U]I settings             |
+| `<leader>h`  | Git [H]unk                |
+| `<leader>l`  | [L]azy tools              |
+| `<leader>f`  | [F]ile                    |
+| `<leader>b`  | [B]uffer                  |
+| `<leader>o`  | [O]rder/Organize          |
+| `<leader>r`  | [R]oot/Run                |
+| `<leader>c`  | [C]ode                    |
+| `<leader>d`  | [D]atabase/Debug          |
+| `<leader>x`  | Trouble/[X]               |
+| `<leader>a`  | [A]I assistant            |
+| `<leader>g`  | [G]it explorer            |
+| `<leader>n`  | [N]o/Clear                |
 
 ## 🎨 UI & Display
 

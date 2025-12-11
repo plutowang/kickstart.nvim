@@ -10,69 +10,73 @@ return {
     },
     event = { 'BufReadPost', 'BufNewFile' },
     keys = {
-      { '<leader>rt', '', desc = '+test' },
+      -- Test Running
       {
-        '<leader>rtt',
-        function()
-          require('neotest').run.run(vim.fn.expand '%')
-        end,
-        desc = 'Run File (Neotest)',
-      },
-      {
-        '<leader>rtT',
-        function()
-          require('neotest').run.run(vim.uv.cwd())
-        end,
-        desc = 'Run All Test Files (Neotest)',
-      },
-      {
-        '<leader>rtr',
+        '<leader>rn',
         function()
           require('neotest').run.run()
         end,
-        desc = 'Run Nearest (Neotest)',
+        desc = '[R]un [N]earest test',
       },
       {
-        '<leader>rtl',
+        '<leader>rf',
+        function()
+          require('neotest').run.run(vim.fn.expand '%')
+        end,
+        desc = '[R]un [F]ile tests',
+      },
+      {
+        '<leader>ra',
+        function()
+          require('neotest').run.run(vim.uv.cwd())
+        end,
+        desc = '[R]un [A]ll tests',
+      },
+      {
+        '<leader>rl',
         function()
           require('neotest').run.run_last()
         end,
-        desc = 'Run Last (Neotest)',
+        desc = '[R]un [L]ast test',
       },
       {
-        '<leader>rts',
-        function()
-          require('neotest').summary.toggle()
-        end,
-        desc = 'Toggle Summary (Neotest)',
-      },
-      {
-        '<leader>rto',
-        function()
-          require('neotest').output.open { enter = true, auto_close = true }
-        end,
-        desc = 'Show Output (Neotest)',
-      },
-      {
-        '<leader>rtO',
-        function()
-          require('neotest').output_panel.toggle()
-        end,
-        desc = 'Toggle Output Panel (Neotest)',
-      },
-      {
-        '<leader>rtS',
+        '<leader>rs',
         function()
           require('neotest').run.stop()
         end,
-        desc = 'Stop (Neotest)',
+        desc = '[R]un [S]top',
+      },
+
+      -- Test UI/Display
+      {
+        '<leader>rt',
+        function()
+          require('neotest').summary.toggle()
+        end,
+        desc = '[R]un [T]oggle summary',
       },
       {
-        '<leader>rtw',
+        '<leader>ro',
+        function()
+          require('neotest').output.open { enter = true, auto_close = true }
+        end,
+        desc = '[R]un [O]utput show',
+      },
+      {
+        '<leader>rO',
+        function()
+          require('neotest').output_panel.toggle()
+        end,
+        desc = '[R]un [O]utput panel toggle',
+      },
+
+      -- Test Watch
+      {
+        '<leader>rw',
         function()
           require('neotest').watch.toggle(vim.fn.expand '%')
         end,
-        desc = 'Toggle Watch (Neotest)',
+        desc = '[R]un [W]atch toggle',
       },
     },
     config = function()

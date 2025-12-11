@@ -1,3 +1,13 @@
+-- Adjust global defaults for floating windows
+local orig_open_win = vim.api.nvim_open_win
+vim.api.nvim_open_win = function(buffer, enter, config)
+  -- Apply rounded border to all floating windows if not specified
+  if config and config.relative and not config.border then
+    config.border = 'rounded'
+  end
+  return orig_open_win(buffer, enter, config)
+end
+
 return {
   {
     'catppuccin/nvim',

@@ -38,7 +38,7 @@ vim.opt.winblend = 0 -- No transparency for floating windows by default
 
 -- Better completion experience
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-vim.opt.shortmess:append 'c' -- Don't show completion messages
+vim.opt.shortmess:append 'c'
 
 -- ============================================================================
 -- FOLDING (requires nvim-treesitter)

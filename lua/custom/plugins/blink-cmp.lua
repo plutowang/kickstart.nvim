@@ -158,20 +158,6 @@ return {
                 end,
                 highlight = 'CmpItemMenu',
               },
-              source_name = {
-                width = { max = 15 },
-                text = function(ctx)
-                  local sources = {
-                    nvim_lsp = '[LSP]',
-                    buffer = '[Buf]',
-                    path = '[Path]',
-                    luasnip = '[Snip]',
-                    lazydev = '[Dev]',
-                  }
-                  return sources[ctx.source_name] or string.format('[%s]', ctx.source_name)
-                end,
-                highlight = 'CmpItemMenu',
-              },
             },
           },
         },

@@ -89,17 +89,17 @@
 | `<leader>f` | Format buffer |
 
 ### Testing (Neotest)
-| Key          | Action               |
-| ------------ | -------------------- |
-| `<leader>rn` | Run Nearest test     |
-| `<leader>rf` | Run File tests       |
-| `<leader>ra` | Run All tests        |
-| `<leader>rl` | Run Last test        |
-| `<leader>rs` | Run Stop             |
-| `<leader>rt` | Run Toggle summary   |
-| `<leader>ro` | Run Output show      |
-| `<leader>rO` | Run Output panel     |
-| `<leader>rw` | Run Watch toggle     |
+| Key          | Action             |
+| ------------ | ------------------ |
+| `<leader>rn` | Run Nearest test   |
+| `<leader>rf` | Run File tests     |
+| `<leader>ra` | Run All tests      |
+| `<leader>rl` | Run Last test      |
+| `<leader>rs` | Run Stop           |
+| `<leader>rt` | Run Toggle summary |
+| `<leader>ro` | Run Output show    |
+| `<leader>rO` | Run Output panel   |
+| `<leader>rw` | Run Watch toggle   |
 
 ### Database (nvim-dbee)
 | Key          | Action             |
@@ -287,34 +287,23 @@
 | `<C-k>`         | Toggle signature help         |
 
 ### Which-key Groups
-| Key          | Group                     |
-| ------------ | ------------------------- |
-| `<leader>s`  | [S]earch                  |
-| `<leader>t`  | [T]oggle                  |
-| `<leader>u`  | [U]I settings             |
-| `<leader>h`  | Git [H]unk                |
-| `<leader>l`  | [L]azy tools              |
-| `<leader>f`  | [F]ile                    |
-| `<leader>b`  | [B]uffer                  |
-| `<leader>o`  | [O]rder/Organize          |
-| `<leader>r`  | [R]oot/Run                |
-| `<leader>c`  | [C]ode                    |
-| `<leader>d`  | [D]atabase/Debug          |
-| `<leader>x`  | Trouble/[X]               |
-| `<leader>a`  | [A]I assistant            |
-| `<leader>g`  | [G]it explorer            |
-| `<leader>n`  | [N]o/Clear                |
-
-## 🎨 UI & Display
-
-### Which-key
-| Key         | Action        |
-| ----------- | ------------- |
-| `<leader>s` | Search menu   |
-| `<leader>t` | Toggle menu   |
-| `<leader>h` | Git Hunk menu |
-
-## 📁 File Types
+| Key         | Group            |
+| ----------- | ---------------- |
+| `<leader>s` | [S]earch         |
+| `<leader>t` | [T]oggle         |
+| `<leader>u` | [U]I settings    |
+| `<leader>h` | Git [H]unk       |
+| `<leader>l` | [L]azy tools     |
+| `<leader>f` | [F]ile           |
+| `<leader>b` | [B]uffer         |
+| `<leader>o` | [O]rder/Organize |
+| `<leader>r` | [R]oot/Run       |
+| `<leader>c` | [C]ode           |
+| `<leader>d` | [D]atabase/Debug |
+| `<leader>x` | Trouble/[X]      |
+| `<leader>a` | [A]I assistant   |
+| `<leader>g` | [G]it explorer   |
+| `<leader>n` | [N]o/Clear       |
 
 ### Commands Available
 - `:StartupTime` - Show startup time analysis

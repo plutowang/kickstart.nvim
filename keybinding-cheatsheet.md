@@ -378,3 +378,4 @@
 - Spell checking enabled for text files only
 
 ---
+

@@ -474,6 +474,11 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
+        defaults = {
+            preview = {
+                treesitter = true,
+            },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -1176,6 +1181,7 @@ require('lazy').setup({
     build = ':TSUpdate',
     branch = 'master',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    event = { 'VeryLazy' },
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       -- Use :TSInstall! angular astro bash c sql diff cpp css go graphql html http javascript json lua luadoc markdown markdown_inline query python rust toml tsx typescript vim vimdoc xml yaml zig git_config gitcommit git_rebase gitignore gitattributes

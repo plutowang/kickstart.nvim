@@ -28,7 +28,6 @@ return {
       { '[b', desc = 'Previous [b]lock start' },
       { ']B', desc = 'Next [B]lock end' },
       { '[B', desc = 'Previous [B]lock end' },
-      { '<leader>cs', group = '[C]ode [S]wap' },
       { '<leader>wa', desc = 'S[w]ap p[a]rameter with next' },
       { '<leader>wA', desc = 'S[w]ap p[A]rameter with previous' },
       { '<leader>wm', desc = 'S[w]ap [M]ethod with next' },

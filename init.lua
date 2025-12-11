@@ -186,8 +186,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>xe', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>xq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -361,52 +361,25 @@ require('lazy').setup({
       },
 
       -- Document existing key chains
-      spec = {
-        -- == PRIMARY GROUPS ==
-        
-        -- Search & Find
-        { '<leader>s', group = '🔍 [S]earch' },
-        
-        -- File & Explorer Management  
-        { '<leader>f', group = '📂 [F]ile' },
+      spec = {   
+        { '<leader>s', group = '🔍 [S]earch' }, 
         { '<leader>e', group = '🌳 [E]xplorer' },
-        
-        -- Git & Version Control
         { '<leader>g', group = '🔄 [G]it' },
         { '<leader>h', group = '📝 Git [H]unk', mode = { 'n', 'v' } },
-        
-        -- Development & Code
-        { '<leader>c', group = '💻 [C]ode' },
         { '<leader>r', group = '🏃 [R]un/Test' },
         { '<leader>d', group = '🐛 [D]ebug/Database' },
         { '<leader>x', group = '⚠️  Trouble/[X]' },
-        
-        -- == SECONDARY GROUPS ==
-        
-        -- Terminal & Tools
         { '<leader>t', group = '🖥️  [T]erminal/Toggle' },
-        
-        -- UI & Settings
-        { '<leader>u', group = '⚙️  [U]I/Settings' },
-        
-        -- AI & Productivity
         { '<leader>a', group = '🤖 [A]I Assistant' },
-        
-        -- Text Manipulation & Organization
         { '<leader>w', group = '🔄 S[w]ap/Wrap' },
-        { '<leader>o', group = '📋 [O]rder/Organize' },
-        
-        -- Buffer Management
         { '<leader>b', group = '📄 [B]uffer' },
-        
-        -- Clear & Reset Actions
         { '<leader>n', group = '🚫 [N]o/Clear' },
-        
-        -- Tools & Utilities
-        { '<leader>l', group = '🔧 [L]azy/Tools' },
+        { '<leader>u', group = '⚙️  [U]tility/Settings' },
+        { 'gr', group = '📋 LSP Actions' },
+        { ']', group = '➡️  Next' },
+        { '[', group = '⬅️  Previous' },
         
         -- == HIDDEN SHORTCUTS ==
-        -- Numbers (Buffer switching - hidden from menu)
         { '<leader>1', hidden = true },
         { '<leader>2', hidden = true },
         { '<leader>3', hidden = true },

@@ -1,7 +1,6 @@
 # Neovim Keybinding Cheatsheet
 
 - *Leader key: `<Space>`*
-
 - *Note: `<C-*>` means `<Ctrl-*>`*
 
 ## 📂 File & Buffer Management
@@ -14,18 +13,18 @@
 | `<C-h>`       | Previous buffer            |
 | `<C-l>`       | Next buffer                |
 | `<C-x>`       | Close buffer               |
-| `<Alt+h>`     | Move buffer left           |
-| `<Alt+l>`     | Move buffer right          |
-| `<leader>od`  | Order buffers by directory |
-| `<leader>ol`  | Order buffers by language  |
+| `<M-h>/<A-h>` | Move buffer left           |
+| `<M-l>/<A-l>` | Move buffer right          |
+| `<leader>bo`  | Order buffers by directory |
+| `<leader>bl`  | Order buffers by language  |
 
 ### File Explorer (Neo-tree)
 | Key          | Action                   |
 | ------------ | ------------------------ |
-| `<leader>re` | Root Explorer (from /)   |
-| `<leader>fe` | File Explorer (from cwd) |
-| `<leader>ge` | Git Explorer             |
-| `<leader>be` | Buffer Explorer          |
+| `<leader>er` | Root Explorer (from /)   |
+| `<leader>ef` | File Explorer (from cwd) |
+| `<leader>eg` | Git Explorer             |
+| `<leader>eb` | Buffer Explorer          |
 
 ## 🔍 Search & Navigation
 
@@ -68,20 +67,19 @@
 ## 🔧 Development Tools
 
 ### LSP (Language Server)
-| Key          | Action                         |
-| ------------ | ------------------------------ |
-| `grn`        | Rename symbol                  |
-| `gra`        | Code Action                    |
-| `grr`        | Go to References               |
-| `gri`        | Go to Implementation           |
-| `grd`        | Go to Definition               |
-| `grD`        | Go to Declaration              |
-| `gO`         | Document Symbols               |
-| `gW`         | Workspace Symbols              |
-| `grt`        | Go to Type Definition          |
-| `<leader>th` | Toggle Inlay Hints             |
-| `<leader>e`  | Show diagnostic Error messages |
-| `<leader>q`  | Open diagnostic Quickfix list  |
+| Key          | Action                |
+| ------------ | --------------------- |
+| `grn`        | Rename symbol         |
+| `gra`        | Code Action           |
+| `grr`        | Go to References      |
+| `gri`        | Go to Implementation  |
+| `grd`        | Go to Definition      |
+| `grD`        | Go to Declaration     |
+| `gO`         | Document Symbols      |
+| `gW`         | Workspace Symbols     |
+| `grt`        | Go to Type Definition |
+| `<leader>th` | Toggle Inlay Hints    |
+
 
 ### Formatting
 | Key         | Action        |
@@ -89,23 +87,32 @@
 | `<leader>f` | Format buffer |
 
 ### Testing (Neotest)
-| Key          | Action             |
-| ------------ | ------------------ |
-| `<leader>rn` | Run Nearest test   |
-| `<leader>rf` | Run File tests     |
-| `<leader>ra` | Run All tests      |
-| `<leader>rl` | Run Last test      |
-| `<leader>rs` | Run Stop           |
-| `<leader>rt` | Run Toggle summary |
-| `<leader>ro` | Run Output show    |
-| `<leader>rO` | Run Output panel   |
-| `<leader>rw` | Run Watch toggle   |
+| Key          | Action                  |
+| ------------ | ----------------------- |
+| `<leader>rn` | Run Nearest test        |
+| `<leader>rf` | Run File tests          |
+| `<leader>ra` | Run All tests           |
+| `<leader>rl` | Run Last test           |
+| `<leader>rs` | Run Stop                |
+| `<leader>rt` | Run Toggle summary      |
+| `<leader>ro` | Run Output show         |
+| `<leader>rO` | Run Output panel toggle |
+| `<leader>rw` | Run Watch toggle        |
 
 ### Database (nvim-dbee)
 | Key          | Action             |
 | ------------ | ------------------ |
 | `<leader>db` | Toggle Database UI |
 | `<leader>de` | Execute Query      |
+
+### Trouble (Diagnostics)
+| Key          | Action                         |
+| ------------ | ------------------------------ |
+| `<leader>xx` | Diagnostics (Trouble)          |
+| `<leader>xs` | Symbols (Trouble)              |
+| `<leader>xQ` | Quickfix List (Trouble)        |
+| `<leader>xe` | Show diagnostic Error messages |
+| `<leader>xq` | Open diagnostic Quickfix list  |
 
 ## 🤖 AI Tools
 
@@ -137,17 +144,21 @@
 #### LazyGit
 | Key          | Action       |
 | ------------ | ------------ |
-| `<leader>lg` | Open LazyGit |
+| `<leader>gl` | Open LazyGit |
 
 ## 🪟 Window Management
 
-### Window Navigation
-| Key          | Action               |
-| ------------ | -------------------- |
-| `<C-w><C-h>` | Move to left window  |
-| `<C-w><C-l>` | Move to right window |
-| `<C-w><C-j>` | Move to lower window |
-| `<C-w><C-k>` | Move to upper window |
+### Window Navigation & Resizing
+| Key          | Action                 |
+| ------------ | ---------------------- |
+| `<C-w><C-h>` | Move to left window    |
+| `<C-w><C-l>` | Move to right window   |
+| `<C-w><C-j>` | Move to lower window   |
+| `<C-w><C-k>` | Move to upper window   |
+| `<C-Up>`     | Increase window height |
+| `<C-Down>`   | Decrease window height |
+| `<C-Left>`   | Decrease window width  |
+| `<C-Right>`  | Increase window width  |
 
 ### Code Folding
 | Key  | Action                         |
@@ -171,6 +182,28 @@
 | `<Esc>`      | Clear search highlights       |
 | `<leader>q`  | Open diagnostic quickfix list |
 | `<Esc><Esc>` | Exit terminal mode            |
+| `<leader>nh` | Clear search highlight        |
+
+### Text Editing Enhancements
+| Key          | Action                              |
+| ------------ | ----------------------------------- |
+| `<` (visual) | Indent left and reselect            |
+| `>` (visual) | Indent right and reselect           |
+| `J` (visual) | Move selection down                 |
+| `K` (visual) | Move selection up                   |
+| `p` (visual) | Paste without overwriting clipboard |
+| `J` (normal) | Join lines without moving cursor    |
+| `<C-d>`      | Scroll down and center              |
+| `<C-u>`      | Scroll up and center                |
+| `n`          | Next search result and center       |
+| `N`          | Previous search result and center   |
+
+### Utility & Settings
+| Key          | Action                    |
+| ------------ | ------------------------- |
+| `<leader>uw` | Toggle line wrap          |
+| `<leader>us` | Toggle spell check        |
+| `<leader>uf` | Enable treesitter folding |
 
 ### Recording & Macros
 | Key  | Action                    |
@@ -223,12 +256,12 @@
 | `[B` | Previous [B]lock end       |
 
 ### Text Object Swapping
-| Key           | Action                           |
-| ------------- | -------------------------------- |
-| `<leader>csa` | [S]wap p[a]rameter with next     |
-| `<leader>csA` | [S]wap p[A]rameter with previous |
-| `<leader>csm` | [S]wap [M]ethod with next        |
-| `<leader>csM` | [S]wap [M]ethod with previous    |
+| Key          | Action                           |
+| ------------ | -------------------------------- |
+| `<leader>wa` | [S]wap p[a]rameter with next     |
+| `<leader>wA` | [S]wap p[A]rameter with previous |
+| `<leader>wm` | [S]wap [m]ethod with next        |
+| `<leader>wM` | [S]wap [M]ethod with previous    |
 
 ### Additional Vim Operations
 | Key      | Action                              |
@@ -287,23 +320,23 @@
 | `<C-k>`         | Toggle signature help         |
 
 ### Which-key Groups
-| Key         | Group            |
-| ----------- | ---------------- |
-| `<leader>s` | [S]earch         |
-| `<leader>t` | [T]oggle         |
-| `<leader>u` | [U]I settings    |
-| `<leader>h` | Git [H]unk       |
-| `<leader>l` | [L]azy tools     |
-| `<leader>f` | [F]ile           |
-| `<leader>b` | [B]uffer         |
-| `<leader>o` | [O]rder/Organize |
-| `<leader>r` | [R]oot/Run       |
-| `<leader>c` | [C]ode           |
-| `<leader>d` | [D]atabase/Debug |
-| `<leader>x` | Trouble/[X]      |
-| `<leader>a` | [A]I assistant   |
-| `<leader>g` | [G]it explorer   |
-| `<leader>n` | [N]o/Clear       |
+| Key         | Group              |
+| ----------- | ------------------ |
+| `<leader>s` | [S]earch           |
+| `<leader>e` | [E]xplorer         |
+| `<leader>g` | [G]it              |
+| `<leader>h` | Git [H]unk         |
+| `<leader>r` | [R]un/Test         |
+| `<leader>d` | [D]atabase/Debug   |
+| `<leader>x` | Trouble/[X]        |
+| `<leader>f` | [F]ormat           |
+| `<leader>t` | [T]erminal/Toggle  |
+| `<leader>a` | [A]I Assistant     |
+| `<leader>w` | S[w]ap/Wrap        |
+| `<leader>b` | [B]uffer           |
+| `<leader>n` | [N]o/Clear         |
+| `<leader>u` | [U]tility/Settings |
+| `gr`        | LSP Actions        |
 
 ### Commands Available
 - `:StartupTime` - Show startup time analysis

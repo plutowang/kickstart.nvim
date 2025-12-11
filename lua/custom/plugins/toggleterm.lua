@@ -31,13 +31,52 @@ return {
     config = function()
         require('toggleterm').setup {
             shading_factor = 0.3, -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
-            size = 10,
+            size = function(term)
+                if term.direction == "horizontal" then
+                    return 15
+                elseif term.direction == "vertical" then
+                    return vim.o.columns * 0.4
+                end
+            end,
             direction = 'float',
             float_opts = {
-                border = 'curved',
+                border = 'rounded',
+                width = function()
+                    return math.floor(vim.o.columns * 0.85)
+                end,
+                height = function()
+                    return math.floor(vim.o.lines * 0.8)
+                end,
+                winblend = 3,
+                col = function()
+                    return math.floor((vim.o.columns - (vim.o.columns * 0.85)) / 2)
+                end,
+                row = function()
+                    return math.floor((vim.o.lines - (vim.o.lines * 0.8)) / 2)
+                end,
                 highlights = {
-                    border = 'Normal',
-                    background = 'Normal'
+                    border = 'FloatBorder',
+                    background = 'NormalFloat'
+                }
+            },
+            shade_terminals = true,
+            start_in_insert = true,
+            insert_mappings = true,
+            terminal_mappings = true,
+            persist_size = true,
+            persist_mode = true,
+            close_on_exit = true,
+            shell = vim.o.shell,
+            auto_scroll = true,
+            highlights = {
+                Normal = {
+                    guibg = 'NONE'
+                },
+                NormalFloat = {
+                    link = 'NormalFloat'
+                },
+                FloatBorder = {
+                    link = 'FloatBorder'
                 }
             }
         }

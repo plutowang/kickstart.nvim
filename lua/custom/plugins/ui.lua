@@ -405,17 +405,7 @@ return {
             end,
           },
         },
-        lualine_y = {
-          {
-            'encoding',
-            fmt = function(str)
-              return str:upper()
-            end,
-          },
-          { 'fileformat', symbols = { unix = '', dos = '', mac = '' } },
-          { 'filetype', icon_only = true },
-          { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
-        },
+        lualine_y = { 'encoding', 'fileformat', 'filetype', 'progress' },
         lualine_z = {
           { 'location', separator = { right = '' }, left_padding = 2 },
         },

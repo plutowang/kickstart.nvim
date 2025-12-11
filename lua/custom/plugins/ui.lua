@@ -1,9 +1,18 @@
--- Adjust global defaults for floating windows
+-- UI enhancements
+vim.opt.pumblend = 15
+vim.opt.winblend = 15
+vim.opt.smoothscroll = true
+vim.opt.termguicolors = true
+vim.opt.cursorline = true
+
+-- Add rounded borders to all floating windows
 local orig_open_win = vim.api.nvim_open_win
 vim.api.nvim_open_win = function(buffer, enter, config)
-  -- Apply rounded border to all floating windows if not specified
-  if config and config.relative and not config.border then
-    config.border = 'rounded'
+  if config and config.relative then
+    config.border = config.border or 'rounded'
+    if not config.style then
+      config.style = 'minimal'
+    end
   end
   return orig_open_win(buffer, enter, config)
 end
@@ -16,22 +25,28 @@ return {
     lazy = false,
     config = function()
       vim.opt.background = 'light'
-      -- Disable recording messages at bottom
       vim.opt.shortmess:append 'q'
 
       require('catppuccin').setup {
-        flavour = 'latte', -- Force latte for consistent light theme
-        background = { -- :h background
+        flavour = 'latte',
+        background = {
           light = 'latte',
-          dark = 'latte', -- Keep latte even for dark mode for consistency
+          dark = 'latte',
         },
-        transparent_background = false, -- Disable transparency for better readability
-        show_end_of_buffer = false, -- Hide ~ chars for cleaner look
-        term_colors = true, -- Enable terminal colors for better integration
+        transparent_background = false,
+        show_end_of_buffer = false,
+        term_colors = true,
         dim_inactive = {
-          enabled = true, -- Enable dimming for better focus
-          shade = 'light', -- Use light shade for light theme
-          percentage = 0.15,
+          enabled = true,
+          shade = 'light',
+          percentage = 0.12,
+        },
+        color_overrides = {
+          latte = {
+            base = '#faf8f5',
+            mantle = '#f2f0ed',
+            surface0 = '#ede9e6',
+          },
         },
         no_italic = false,
         no_bold = false,
@@ -54,14 +69,14 @@ return {
         integrations = {
           cmp = true,
           gitsigns = true,
-          nvimtree = false, -- We use neo-tree instead
+          nvimtree = false,
           neo_tree = true,
           treesitter = true,
           treesitter_context = true,
-          notify = true, -- Enable notify integration
+          notify = true,
           mini = {
             enabled = true,
-            indentscope_color = 'lavender', -- Use lavender for indent guides
+            indentscope_color = 'lavender',
           },
           barbar = true,
           mason = true,
@@ -78,7 +93,6 @@ return {
             scope_color = 'lavender',
             colored_indent_levels = false,
           },
-          -- Add more integrations for better consistency
           dap = { enabled = true, enable_ui = true },
           headlines = true,
           leap = true,
@@ -86,68 +100,92 @@ return {
           neotest = true,
           noice = true,
           semantic_tokens = true,
+          alpha = true,
+          dashboard = true,
+          dropbar = true,
+          fidget = true,
+          harpoon = true,
+          native_lsp = {
+            enabled = true,
+            virtual_text = {
+              errors = { 'italic' },
+              hints = { 'italic' },
+              warnings = { 'italic' },
+              information = { 'italic' },
+            },
+            underlines = {
+              errors = { 'underline' },
+              hints = { 'underline' },
+              warnings = { 'underline' },
+              information = { 'underline' },
+            },
+            inlay_hints = {
+              background = true,
+            },
+          },
+          snacks = true,
+          render_markdown = true,
         },
         custom_highlights = function(colors)
           return {
-            -- Enhanced contrast for better readability
+            -- Editor UI
             CursorLine = { bg = colors.surface0 },
             CursorColumn = { bg = colors.surface0 },
             ColorColumn = { bg = colors.surface0 },
-            -- Better visual separation
             WinSeparator = { fg = colors.overlay0, bg = colors.base },
-            -- Enhanced search highlighting
-            Search = { bg = colors.yellow, fg = colors.base, style = { 'bold' } },
-            IncSearch = { bg = colors.peach, fg = colors.base, style = { 'bold' } },
-            -- Better fold appearance
             Folded = { bg = colors.surface1, fg = colors.overlay1, style = { 'italic' } },
-            -- Enhanced selection
             Visual = { bg = colors.surface2 },
-            -- Better line numbers
+
+            -- Line numbers
             LineNr = { fg = colors.overlay0 },
             CursorLineNr = { fg = colors.mauve, style = { 'bold' } },
-            -- Improved popup menu
+
+            -- Search
+            Search = { bg = colors.yellow, fg = colors.base, style = { 'bold' } },
+            IncSearch = { bg = colors.peach, fg = colors.base, style = { 'bold' } },
+
+            -- Popup menu
             Pmenu = { bg = colors.surface0, fg = colors.text },
             PmenuSel = { bg = colors.surface1, fg = colors.text, style = { 'bold' } },
             PmenuSbar = { bg = colors.surface1 },
             PmenuThumb = { bg = colors.overlay0 },
-            -- Better floating windows
+
+            -- Floating windows
             NormalFloat = { bg = colors.mantle, fg = colors.text },
-            FloatBorder = { bg = colors.mantle, fg = colors.blue },
-            -- Enhanced diagnostics
+            FloatBorder = { bg = colors.mantle, fg = colors.lavender },
+            FloatTitle = { bg = colors.mantle, fg = colors.blue, style = { 'bold' } },
+            FloatFooter = { bg = colors.mantle, fg = colors.overlay1, style = { 'italic' } },
+
+            -- Diagnostics
             DiagnosticError = { fg = colors.red },
             DiagnosticWarn = { fg = colors.yellow },
             DiagnosticInfo = { fg = colors.sky },
             DiagnosticHint = { fg = colors.teal },
-            -- Better git signs
+
+            -- Git signs
             GitSignsAdd = { fg = colors.green },
             GitSignsChange = { fg = colors.yellow },
             GitSignsDelete = { fg = colors.red },
-            -- Enhanced indent guides
+
+            -- Indent guides
             IblIndent = { fg = colors.surface1 },
             IblScope = { fg = colors.lavender },
 
-            -- Elegant Blink.cmp styling
-            -- Main completion menu
+            -- Completion menu (blink.cmp)
             CmpMenu = { bg = colors.mantle, fg = colors.text },
             CmpMenuBorder = { bg = colors.mantle, fg = colors.blue },
             CmpMenuSel = { bg = colors.surface0, fg = colors.text, style = { 'bold' } },
-
-            -- Documentation window
             CmpDocumentation = { bg = colors.mantle, fg = colors.text },
             CmpDocumentationBorder = { bg = colors.mantle, fg = colors.lavender },
             CmpDocumentationCursorLine = { bg = colors.surface0 },
-
-            -- Signature help
             CmpSignatureHelp = { bg = colors.mantle, fg = colors.text },
             CmpSignatureHelpBorder = { bg = colors.mantle, fg = colors.teal },
-
-            -- Completion item highlights
             CmpItemAbbr = { fg = colors.text },
             CmpItemAbbrMatch = { fg = colors.blue, style = { 'bold' } },
             CmpItemAbbrMatchFuzzy = { fg = colors.sky, style = { 'bold' } },
             CmpItemMenu = { fg = colors.overlay1, style = { 'italic' } },
 
-            -- Kind-specific highlights with colors
+            -- Completion kinds
             CmpItemKindText = { fg = colors.green },
             CmpItemKindMethod = { fg = colors.blue },
             CmpItemKindFunction = { fg = colors.blue },
@@ -173,6 +211,68 @@ return {
             CmpItemKindEvent = { fg = colors.red },
             CmpItemKindOperator = { fg = colors.sky },
             CmpItemKindTypeParameter = { fg = colors.maroon },
+
+            -- LSP references
+            LspReferenceText = { bg = colors.surface1, style = { 'bold' } },
+            LspReferenceRead = { bg = colors.surface1, style = { 'bold' } },
+            LspReferenceWrite = { bg = colors.yellow, fg = colors.base, style = { 'bold' } },
+
+            -- Illuminate (word highlighting)
+            IlluminatedWordText = { bg = colors.surface2, style = { 'bold' } },
+            IlluminatedWordRead = { bg = colors.surface2, style = { 'bold' } },
+            IlluminatedWordWrite = { bg = colors.yellow, fg = colors.base, style = { 'bold' } },
+
+            -- Telescope
+            TelescopeNormal = { bg = colors.mantle, fg = colors.text },
+            TelescopeBorder = { bg = colors.mantle, fg = colors.lavender },
+            TelescopeTitle = { bg = colors.lavender, fg = colors.mantle, style = { 'bold' } },
+            TelescopeSelection = { bg = colors.surface0, fg = colors.text, style = { 'bold' } },
+            TelescopeSelectionCaret = { fg = colors.flamingo },
+            TelescopeMatching = { fg = colors.blue, style = { 'bold' } },
+            TelescopePromptPrefix = { fg = colors.flamingo },
+            TelescopePromptCounter = { fg = colors.overlay1 },
+
+            -- Notifications
+            NotifyBackground = { bg = colors.base },
+            NotifyERRORBorder = { fg = colors.red },
+            NotifyWARNBorder = { fg = colors.yellow },
+            NotifyINFOBorder = { fg = colors.sky },
+            NotifyDEBUGBorder = { fg = colors.overlay0 },
+            NotifyTRACEBorder = { fg = colors.pink },
+            NotifyERRORTitle = { fg = colors.red, style = { 'bold' } },
+            NotifyWARNTitle = { fg = colors.yellow, style = { 'bold' } },
+            NotifyINFOTitle = { fg = colors.sky, style = { 'bold' } },
+            NotifyDEBUGTitle = { fg = colors.overlay0, style = { 'bold' } },
+            NotifyTRACETitle = { fg = colors.pink, style = { 'bold' } },
+
+            -- Which-key
+            WhichKey = { fg = colors.lavender, style = { 'bold' } },
+            WhichKeyGroup = { fg = colors.blue },
+            WhichKeyDesc = { fg = colors.text },
+            WhichKeySeparator = { fg = colors.overlay1 },
+            WhichKeyFloat = { bg = colors.mantle },
+            WhichKeyBorder = { bg = colors.mantle, fg = colors.lavender },
+
+            -- Neo-tree
+            NeoTreeNormal = { bg = colors.mantle, fg = colors.text },
+            NeoTreeNormalNC = { bg = colors.mantle, fg = colors.text },
+            NeoTreeWinSeparator = { bg = colors.base, fg = colors.base },
+            NeoTreeFloatBorder = { bg = colors.mantle, fg = colors.lavender },
+            NeoTreeFloatTitle = { bg = colors.mantle, fg = colors.lavender, style = { 'bold' } },
+
+            -- Mason
+            MasonNormal = { bg = colors.mantle, fg = colors.text },
+            MasonHeader = { bg = colors.blue, fg = colors.mantle, style = { 'bold' } },
+            MasonHeaderSecondary = { bg = colors.lavender, fg = colors.mantle, style = { 'bold' } },
+            MasonHighlight = { fg = colors.blue },
+            MasonHighlightBlock = { bg = colors.blue, fg = colors.mantle },
+            MasonHighlightBlockBold = { bg = colors.blue, fg = colors.mantle, style = { 'bold' } },
+            MasonHighlightSecondary = { fg = colors.lavender },
+            MasonHighlightBlockSecondary = { bg = colors.lavender, fg = colors.mantle },
+            MasonHighlightBlockBoldSecondary = { bg = colors.lavender, fg = colors.mantle, style = { 'bold' } },
+            MasonMuted = { fg = colors.overlay1 },
+            MasonMutedBlock = { bg = colors.overlay1, fg = colors.mantle },
+            MasonMutedBlockBold = { bg = colors.overlay1, fg = colors.mantle, style = { 'bold' } },
           }
         end,
       }
@@ -180,29 +280,39 @@ return {
     end,
   },
   {
-    -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
     dependencies = { 'catppuccin/nvim' },
-    -- See `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = true,
         theme = 'catppuccin',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
-        extensions = { 'lazy', 'mason', 'neo-tree', 'nvim-dap-ui', 'toggleterm', 'trouble' },
+        extensions = { 'lazy', 'mason', 'neo-tree', 'nvim-dap-ui', 'trouble', 'fzf' },
         globalstatus = true,
         disabled_filetypes = {
-          statusline = {},
-          winbar = {},
+          statusline = { 'alpha', 'dashboard' },
+          winbar = { 'alpha', 'dashboard', 'neo-tree' },
+        },
+        refresh = {
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
         },
       },
       sections = {
         lualine_a = {
           { 'mode', separator = { left = '' }, right_padding = 2 },
         },
-        lualine_b = { 'filename', 'branch' },
+        lualine_b = {
+          {
+            'filename',
+            path = 1,
+            symbols = { modified = '●', readonly = '', unnamed = '[No Name]' },
+          },
+          { 'branch', icon = '', color = { gui = 'bold' } },
+        },
         lualine_c = {
           {
             'diagnostics',
@@ -214,15 +324,16 @@ return {
               hint = '󰌶 ',
             },
             diagnostics_color = {
-              error = { fg = '#e78284' }, -- red from catppuccin latte
-              warn = { fg = '#e5c890' }, -- yellow from catppuccin latte
-              info = { fg = '#99d1db' }, -- sky from catppuccin latte
-              hint = { fg = '#81c8be' }, -- teal from catppuccin latte
+              error = { fg = '#e78284' },
+              warn = { fg = '#e5c890' },
+              info = { fg = '#99d1db' },
+              hint = { fg = '#81c8be' },
             },
             always_visible = false,
             update_in_insert = false,
           },
           {
+            -- Recording indicator
             function()
               local recording_register = vim.fn.reg_recording()
               if recording_register == '' then
@@ -231,9 +342,24 @@ return {
                 return '󰑋 ' .. recording_register
               end
             end,
-            color = { fg = '#eff1f5', bg = '#e78284', style = 'bold' }, -- white text on red background
-            separator = { left = '', right = '' }, -- rounded separators
+            color = { fg = '#eff1f5', bg = '#e78284', gui = 'bold' },
+            separator = { left = '', right = '' },
             padding = { left = 1, right = 1 },
+          },
+          {
+            -- Active LSP clients
+            function()
+              local clients = vim.lsp.get_clients { bufnr = 0 }
+              if #clients == 0 then
+                return ''
+              end
+              local client_names = {}
+              for _, client in ipairs(clients) do
+                table.insert(client_names, client.name)
+              end
+              return '󰒋 ' .. table.concat(client_names, ', ')
+            end,
+            color = { fg = '#8839ef' },
           },
         },
         lualine_x = {
@@ -245,9 +371,9 @@ return {
               removed = '󰍴 ',
             },
             diff_color = {
-              added = { fg = '#a6d189' }, -- green from catppuccin latte
-              modified = { fg = '#e5c890' }, -- yellow from catppuccin latte
-              removed = { fg = '#e78284' }, -- red from catppuccin latte
+              added = { fg = '#a6d189' },
+              modified = { fg = '#e5c890' },
+              removed = { fg = '#e78284' },
             },
             source = function()
               local gitsigns = vim.b.gitsigns_status_dict
@@ -260,8 +386,36 @@ return {
               end
             end,
           },
+          {
+            -- Context breadcrumb (current function/class)
+            function()
+              local winid = vim.api.nvim_get_current_win()
+              local ok, navic = pcall(require, 'nvim-navic')
+              if ok and navic.is_available(winid) then
+                return navic.get_location()
+              end
+              return ''
+            end,
+            color = { fg = '#7c7f93' },
+            fmt = function(str)
+              if #str > 40 then
+                return str:sub(1, 37) .. '...'
+              end
+              return str
+            end,
+          },
         },
-        lualine_y = { 'encoding', 'fileformat', 'filetype', 'progress' },
+        lualine_y = {
+          {
+            'encoding',
+            fmt = function(str)
+              return str:upper()
+            end,
+          },
+          { 'fileformat', symbols = { unix = '', dos = '', mac = '' } },
+          { 'filetype', icon_only = true },
+          { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
+        },
         lualine_z = {
           { 'location', separator = { right = '' }, left_padding = 2 },
         },
@@ -277,3 +431,4 @@ return {
     },
   },
 }
+

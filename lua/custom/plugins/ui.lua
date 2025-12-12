@@ -273,6 +273,9 @@ return {
             MasonMuted = { fg = colors.overlay1 },
             MasonMutedBlock = { bg = colors.overlay1, fg = colors.mantle },
             MasonMutedBlockBold = { bg = colors.overlay1, fg = colors.mantle, style = { 'bold' } },
+
+            -- Angular variable highlighting
+            ['@variable.angular'] = { fg = colors.mauve, style = { 'italic' } },
           }
         end,
       }

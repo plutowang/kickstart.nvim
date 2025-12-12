@@ -1191,6 +1191,10 @@ require('lazy').setup({
         'vim', 'vimdoc', 'xml', 'yaml', 'zig', 'git_config',
         'gitcommit', 'git_rebase', 'gitignore', 'gitattributes',
       },
+      -- Associate Angular templates with proper highlighting
+      filetype_to_parsername = {
+        htmlangular = 'angular',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {

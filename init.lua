@@ -362,22 +362,26 @@ require('lazy').setup({
 
       -- Document existing key chains
       spec = {   
-        { '<leader>s', group = ' 🔍 [S]earch' }, 
-        { '<leader>e', group = ' 🌳 [E]xplorer' },
-        { '<leader>g', group = ' 🔄 [G]it' },
-        { '<leader>h', group = ' 📝 Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>r', group = ' 🏃 [R]un/Test' },
-        { '<leader>d', group = ' 🐛 [D]ebug/Database' },
-        { '<leader>x', group = ' ⚠️ Trouble/[X]' },
-        { '<leader>t', group = ' 🖥️ [T]erminal/Toggle', mode = { 'n', 'v' } },
-        { '<leader>a', group = ' 🤖 [A]I Assistant' },
-        { '<leader>w', group = ' 🔄 S[w]ap/Wrap' },
-        { '<leader>b', group = ' 📄 [B]uffer' },
-        { '<leader>n', group = ' 🚫 [N]o/Clear' },
-        { '<leader>u', group = ' ⚙️ [U]tility/Settings' },
-        { 'gr', group = ' 📋 LSP Actions' },
-        { ']', group = ' ➡️ Next' },
-        { '[', group = ' ⬅️ Previous' },
+        { '<leader>s', group = '[S]earch' }, 
+        { '<leader>e', group = '[E]xplorer' },
+        { '<leader>g', group = '[G]it' },
+        { '<leader>h', group = '[G]it [H]unk', mode = { 'n', 'v' } },
+        { '<leader>r', group = '[R]un/Test' },
+        { '<leader>d', group = '[D]ebug' },
+        { '<leader>df', group = '[D]ebug [F]-key' },
+        { '<leader>di', group = '[D]ebug [I]nspection' },
+        { '<leader>dg', group = '[D]ebug [G]o' },
+        { '<leader>D', group = '[D]atabase' },
+        { '<leader>x', group = 'Trouble/[X]' },
+        { '<leader>t', group = '[T]erminal/Toggle', mode = { 'n', 'v' } },
+        { '<leader>a', group = '[A]I Assistant' },
+        { '<leader>w', group = 'S[w]ap/Wrap' },
+        { '<leader>b', group = '[B]uffer' },
+        { '<leader>n', group = '[N]o/Clear' },
+        { '<leader>u', group = '[U]tility/Settings' },
+        { 'gr', group = 'LSP Actions' },
+        { ']', group = 'Next' },
+        { '[', group = 'Previous' },
         
         -- == HIDDEN SHORTCUTS ==
         { '<leader>1', hidden = true },
@@ -1240,7 +1244,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  require 'kickstart.plugins.debug',
+  -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
@@ -1290,19 +1294,3 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
--- auto-reload files when modified externally
--- https://unix.stackexchange.com/a/383044
-vim.o.autoread = true
-
--- Auto save
-vim.opt.autoread = true
-vim.opt.autowrite = true
-vim.opt.autowriteall = true
-vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
-  callback = function()
-    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand '%' ~= '' and vim.bo.buftype == '' then
-      vim.api.nvim_command 'silent update'
-    end
-  end,
-})

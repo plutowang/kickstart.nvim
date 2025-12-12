@@ -89,4 +89,24 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
   vim.g['loaded_' .. plugin] = 1
 end
+
+-- ============================================================================
+-- AUTO-RELOAD & AUTO-SAVE
+-- ============================================================================
+-- Auto-reload files when modified externally
+-- https://unix.stackexchange.com/a/383044
+vim.o.autoread = true
+
+-- Auto save configuration
+vim.opt.autoread = true
+vim.opt.autowrite = true
+vim.opt.autowriteall = true
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
+  callback = function()
+    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand '%' ~= '' and vim.bo.buftype == '' then
+      vim.api.nvim_command 'silent update'
+    end
+  end,
+})
+
 return {}

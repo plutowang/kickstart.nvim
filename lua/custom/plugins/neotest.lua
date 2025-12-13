@@ -13,11 +13,11 @@ return {
     keys = {
       -- Test Running
       {
-        '<leader>rn',
+        '<leader>rt',
         function()
           require('neotest').run.run()
         end,
-        desc = '[R]un [N]earest test',
+        desc = '[R]un Nearest [T]est',
       },
       {
         '<leader>rf',
@@ -50,11 +50,11 @@ return {
 
       -- Test UI/Display
       {
-        '<leader>rt',
+        '<leader>rS',
         function()
           require('neotest').summary.toggle()
         end,
-        desc = '[R]un [T]oggle summary',
+        desc = '[R]un Toggle [S]ummary',
       },
       {
         '<leader>ro',
@@ -68,7 +68,7 @@ return {
         function()
           require('neotest').output_panel.toggle()
         end,
-        desc = '[R]un [O]utput panel toggle',
+        desc = '[R]un Toggle [O]utput Panel',
       },
 
       -- Test Watch

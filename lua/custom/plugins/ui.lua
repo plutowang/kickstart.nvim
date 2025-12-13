@@ -87,7 +87,6 @@ return {
           which_key = true,
           flash = true,
           lsp_trouble = true,
-          illuminate = { enabled = true, lsp = false },
           indent_blankline = {
             enabled = true,
             scope_color = 'lavender',
@@ -126,30 +125,21 @@ return {
           snacks = true,
           render_markdown = true,
           avante = true,
+          blink_cmp = true,
         },
         custom_highlights = function(colors)
+          -- https://github.com/catppuccin/nvim/tree/main/lua/catppuccin/groups
           return {
             -- Editor UI
             CursorLine = { bg = colors.surface0 },
             CursorColumn = { bg = colors.surface0 },
             ColorColumn = { bg = colors.surface0 },
             WinSeparator = { fg = colors.overlay0, bg = colors.base },
-            Folded = { bg = colors.surface1, fg = colors.overlay1, style = { 'italic' } },
-            Visual = { bg = colors.surface2 },
+            Folded = { style = { 'italic', 'bold' } },
 
             -- Line numbers
             LineNr = { fg = colors.overlay0 },
             CursorLineNr = { fg = colors.mauve, style = { 'bold' } },
-
-            -- Search
-            Search = { bg = colors.yellow, fg = colors.base, style = { 'bold' } },
-            IncSearch = { bg = colors.peach, fg = colors.base, style = { 'bold' } },
-
-            -- Popup menu
-            Pmenu = { bg = colors.surface0, fg = colors.text },
-            PmenuSel = { bg = colors.surface1, fg = colors.text, style = { 'bold' } },
-            PmenuSbar = { bg = colors.surface1 },
-            PmenuThumb = { bg = colors.overlay0 },
 
             -- Floating windows
             NormalFloat = { bg = colors.mantle, fg = colors.text },
@@ -158,15 +148,7 @@ return {
             FloatFooter = { bg = colors.mantle, fg = colors.overlay1, style = { 'italic' } },
 
             -- Diagnostics
-            DiagnosticError = { fg = colors.red },
-            DiagnosticWarn = { fg = colors.yellow },
-            DiagnosticInfo = { fg = colors.sky },
             DiagnosticHint = { fg = colors.teal },
-
-            -- Git signs
-            GitSignsAdd = { fg = colors.green },
-            GitSignsChange = { fg = colors.yellow },
-            GitSignsDelete = { fg = colors.red },
 
             -- Indent guides
             IblIndent = { fg = colors.surface1 },
@@ -181,47 +163,11 @@ return {
             CmpDocumentationCursorLine = { bg = colors.surface0 },
             CmpSignatureHelp = { bg = colors.mantle, fg = colors.text },
             CmpSignatureHelpBorder = { bg = colors.mantle, fg = colors.teal },
-            CmpItemAbbr = { fg = colors.text },
-            CmpItemAbbrMatch = { fg = colors.blue, style = { 'bold' } },
-            CmpItemAbbrMatchFuzzy = { fg = colors.sky, style = { 'bold' } },
-            CmpItemMenu = { fg = colors.overlay1, style = { 'italic' } },
-
-            -- Completion kinds
-            CmpItemKindText = { fg = colors.green },
-            CmpItemKindMethod = { fg = colors.blue },
-            CmpItemKindFunction = { fg = colors.blue },
-            CmpItemKindConstructor = { fg = colors.yellow },
-            CmpItemKindField = { fg = colors.teal },
-            CmpItemKindVariable = { fg = colors.mauve },
-            CmpItemKindClass = { fg = colors.yellow },
-            CmpItemKindInterface = { fg = colors.yellow },
-            CmpItemKindModule = { fg = colors.blue },
-            CmpItemKindProperty = { fg = colors.teal },
-            CmpItemKindUnit = { fg = colors.green },
-            CmpItemKindValue = { fg = colors.peach },
-            CmpItemKindEnum = { fg = colors.yellow },
-            CmpItemKindKeyword = { fg = colors.red },
-            CmpItemKindSnippet = { fg = colors.mauve },
-            CmpItemKindColor = { fg = colors.pink },
-            CmpItemKindFile = { fg = colors.blue },
-            CmpItemKindReference = { fg = colors.overlay2 },
-            CmpItemKindFolder = { fg = colors.blue },
-            CmpItemKindEnumMember = { fg = colors.teal },
-            CmpItemKindConstant = { fg = colors.peach },
-            CmpItemKindStruct = { fg = colors.yellow },
-            CmpItemKindEvent = { fg = colors.red },
-            CmpItemKindOperator = { fg = colors.sky },
-            CmpItemKindTypeParameter = { fg = colors.maroon },
 
             -- LSP references
             LspReferenceText = { bg = colors.surface1, style = { 'bold' } },
             LspReferenceRead = { bg = colors.surface1, style = { 'bold' } },
             LspReferenceWrite = { bg = colors.yellow, fg = colors.base, style = { 'bold' } },
-
-            -- Illuminate (word highlighting)
-            IlluminatedWordText = { bg = colors.surface2, style = { 'bold' } },
-            IlluminatedWordRead = { bg = colors.surface2, style = { 'bold' } },
-            IlluminatedWordWrite = { bg = colors.yellow, fg = colors.base, style = { 'bold' } },
 
             -- Telescope
             TelescopeNormal = { bg = colors.mantle, fg = colors.text },
@@ -232,19 +178,6 @@ return {
             TelescopeMatching = { fg = colors.blue, style = { 'bold' } },
             TelescopePromptPrefix = { fg = colors.flamingo },
             TelescopePromptCounter = { fg = colors.overlay1 },
-
-            -- Notifications
-            NotifyBackground = { bg = colors.base },
-            NotifyERRORBorder = { fg = colors.red },
-            NotifyWARNBorder = { fg = colors.yellow },
-            NotifyINFOBorder = { fg = colors.sky },
-            NotifyDEBUGBorder = { fg = colors.overlay0 },
-            NotifyTRACEBorder = { fg = colors.pink },
-            NotifyERRORTitle = { fg = colors.red, style = { 'bold' } },
-            NotifyWARNTitle = { fg = colors.yellow, style = { 'bold' } },
-            NotifyINFOTitle = { fg = colors.sky, style = { 'bold' } },
-            NotifyDEBUGTitle = { fg = colors.overlay0, style = { 'bold' } },
-            NotifyTRACETitle = { fg = colors.pink, style = { 'bold' } },
 
             -- Which-key
             WhichKey = { fg = colors.lavender, style = { 'bold' } },

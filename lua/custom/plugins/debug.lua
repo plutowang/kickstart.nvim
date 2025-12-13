@@ -321,10 +321,19 @@ return {{
             type = 'codelldb',
             request = 'launch',
             program = function()
-                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+                local cargo_toml = vim.fn.findfile('Cargo.toml', '.;')
+                if cargo_toml == '' then
+                    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+                end
+                
+                local project_root = vim.fn.fnamemodify(cargo_toml, ':h')
+                local target_dir = project_root .. '/target/debug'
+                
+                return vim.fn.input('Path to executable: ', target_dir .. '/', 'file')
             end,
             cwd = '${workspaceFolder}',
-            args = {}
+            args = {},
+            stopOnEntry = false
         }, {
             name = '󰙨 Debug Rust Tests',
             type = 'codelldb',
@@ -332,7 +341,9 @@ return {{
             program = function()
                 return vim.fn.input('Path to test executable: ', vim.fn.getcwd() .. '/target/debug/deps/', 'file')
             end,
-            cwd = '${workspaceFolder}'
+            cwd = '${workspaceFolder}',
+            args = { '--nocapture' },
+            stopOnEntry = false
         }}
 
         -- Zig debugging configuration

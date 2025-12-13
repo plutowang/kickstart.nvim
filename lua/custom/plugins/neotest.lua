@@ -4,6 +4,7 @@ return {
     dependencies = {
       'lawrence-laz/neotest-zig',
       'fredrikaverpil/neotest-golang',
+      'mrcjkb/rustaceanvim',
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
       'antoinemadec/FixCursorHold.nvim',
@@ -92,6 +93,7 @@ return {
               -- disable test caching
               extra_args = { "-count=1" },
           },
+          require 'rustaceanvim.neotest',
         },
         status = { virtual_text = true },
         output = { open_on_run = true, close_on_exit = true },

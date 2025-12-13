@@ -125,6 +125,7 @@ return {
           },
           snacks = true,
           render_markdown = true,
+          avante = true,
         },
         custom_highlights = function(colors)
           return {
@@ -276,6 +277,18 @@ return {
 
             -- Angular variable highlighting
             ['@variable.angular'] = { fg = colors.mauve, style = { 'italic' } },
+
+            -- Avante UI
+            AvanteTitle = { bg = colors.lavender, fg = colors.base, style = { 'bold' } },
+            AvanteReversedTitle = { fg = colors.lavender, style = { 'bold' } },
+            AvanteSubtitle = { bg = colors.peach, fg = colors.base, style = { 'bold' } },
+            AvanteReversedSubtitle = { fg = colors.peach, style = { 'bold' } },
+            AvanteThirdTitle = { bg = colors.blue, fg = colors.base, style = { 'bold' } },
+            AvanteReversedThirdTitle = { fg = colors.blue, style = { 'bold' } },
+            AvanteInlineHint = { fg = colors.overlay2, style = { 'italic' } },
+            AvantePopupHint = { fg = colors.overlay2, style = { 'italic' } },
+            AvanteAnnotation = { fg = colors.overlay2, style = { 'italic' } },
+            AvanteSuggestion = { fg = colors.overlay1, style = { 'italic' } },
           }
         end,
       }

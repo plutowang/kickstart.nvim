@@ -113,7 +113,7 @@ return {{
                 request = 'attach'
             }}
         }
-    }, -- Virtual text for variable inspection
+    }, -- Virtual text for variable inspection with cursor hover
     {
         'theHamsta/nvim-dap-virtual-text',
         opts = {
@@ -127,17 +127,147 @@ return {{
             all_references = false,
             clear_on_continue = false,
             display_callback = function(variable, buf, stackframe, node, options)
+                -- Limit value length for readability
+                local value = variable.value or ""
+                if #value > 50 then
+                    value = value:sub(1, 47) .. "..."
+                end
+                
                 if options.virt_text_pos == 'inline' then
-                    return ' = ' .. variable.value
+                    return ' = ' .. value
                 else
-                    return variable.name .. ' = ' .. variable.value
+                    return variable.name .. ' = ' .. value
                 end
             end,
             virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
             all_frames = false,
             virt_lines = false,
             virt_text_win_col = nil
-        }
+        },
+        config = function(_, opts)
+            require('nvim-dap-virtual-text').setup(opts)
+            
+            -- Add cursor hover functionality for variable inspection
+            local dap = require('dap')
+            
+            -- Function to show variable value in floating window
+            local function show_variable_hover()
+                local word = vim.fn.expand('<cword>')
+                if not word or word == '' then return end
+                
+                -- Get current session
+                local session = dap.session()
+                if not session then return end
+                
+                -- Request variable evaluation
+                session:request('evaluate', {
+                    expression = word,
+                    context = 'hover',
+                }, function(err, resp)
+                    if err or not resp or not resp.result then return end
+                    
+                    local lines = {}
+                    table.insert(lines, '📊 ' .. word .. ' = ' .. resp.result)
+                    if resp.type then
+                        table.insert(lines, '📋 Type: ' .. resp.type)
+                    end
+                    
+                    -- Create floating window
+                    local buf = vim.api.nvim_create_buf(false, true)
+                    vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+                    
+                    local opts_float = {
+                        relative = 'cursor',
+                        width = math.max(25, #lines[1] + 5),
+                        height = #lines,
+                        row = 1,
+                        col = 0,
+                        style = 'minimal',
+                        border = 'rounded',
+                        title = ' Variable Value ',
+                        title_pos = 'center',
+                    }
+                    
+                    local win = vim.api.nvim_open_win(buf, false, opts_float)
+                    
+                    -- Set highlight
+                    vim.api.nvim_win_set_option(win, 'winhl', 'Normal:NormalFloat,FloatBorder:FloatBorder')
+                    
+                    -- Auto-close after 4 seconds or on cursor move
+                    local timer = vim.loop.new_timer()
+                    local closed = false
+                    
+                    local function close_window()
+                        if closed then return end
+                        closed = true
+                        if timer then timer:stop() end
+                        if vim.api.nvim_win_is_valid(win) then
+                            vim.api.nvim_win_close(win, true)
+                        end
+                        if vim.api.nvim_buf_is_valid(buf) then
+                            vim.api.nvim_buf_delete(buf, { force = true })
+                        end
+                    end
+                    
+                    -- Close on timer
+                    timer:start(4000, 0, vim.schedule_wrap(close_window))
+                    
+                    -- Close on cursor move
+                    local close_autocmd = vim.api.nvim_create_autocmd({'CursorMoved', 'CursorMovedI', 'WinLeave'}, {
+                        once = true,
+                        callback = function()
+                            close_window()
+                        end,
+                    })
+                end)
+            end
+            
+            -- Function to get variable value under cursor for REPL
+            local function evaluate_in_repl()
+                local word = vim.fn.expand('<cword>')
+                if word and word ~= '' then
+                    require('dap').repl.execute('p ' .. word)
+                    require('dapui').open({ reset = false })
+                    -- Focus on REPL
+                    vim.defer_fn(function()
+                        local wins = vim.api.nvim_list_wins()
+                        for _, win in ipairs(wins) do
+                            local buf = vim.api.nvim_win_get_buf(win)
+                            local buf_name = vim.api.nvim_buf_get_name(buf)
+                            if buf_name:match('dap%-repl') then
+                                vim.api.nvim_set_current_win(win)
+                                break
+                            end
+                        end
+                    end, 100)
+                end
+            end
+            
+            -- Set up autocommands for hover functionality
+            local group = vim.api.nvim_create_augroup('DapVariableHover', { clear = true })
+            
+            -- Show variable on cursor hold (when debugging)
+            vim.api.nvim_create_autocmd('CursorHold', {
+                group = group,
+                callback = function()
+                    if require('dap').session() then
+                        show_variable_hover()
+                    end
+                end,
+            })
+            
+            -- Keybinding for manual variable inspection
+            vim.keymap.set('n', '<leader>dv', show_variable_hover, { 
+                desc = 'Debug: Show variable value',
+                silent = true 
+            })
+            
+            -- Keybinding for evaluating expression in REPL
+            vim.keymap.set('n', '<leader>dr', evaluate_in_repl, { 
+                desc = 'Debug: Evaluate in REPL',
+                silent = true 
+            })
+        end
     }},
 
     keys = {
@@ -147,6 +277,10 @@ return {{
       { '<F2>', function() require('dap').step_over() end, desc = 'Debug: Step Over' },
       { '<F3>', function() require('dap').step_out() end, desc = 'Debug: Step Out' },
       { '<F7>', function() require('dapui').toggle() end, desc = 'Debug: See last session result.' },
+      
+      -- 🔍 Variable inspection
+      { '<leader>dv', desc = 'Debug: Show variable value (hover)' },
+      { '<leader>dr', desc = 'Debug: Evaluate variable in REPL' },
 
       -- 🎯 Core debugging controls
       { '<leader>db', function() require('dap').toggle_breakpoint() end, desc = 'Toggle [D]ebug [B]reakpoint' },

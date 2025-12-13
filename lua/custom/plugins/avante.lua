@@ -34,6 +34,7 @@ return {
     keys = {
       { '<leader>aa', desc = '[A]vante: [A]sk' },
       { '<leader>an', desc = '[A]vante: [N]ew ask' },
+      { '<leader>am', desc = '[A]vante: Toggle [M]ode (Chat/Agent)' },
     },
     version = false, -- Never set this value to "*"! Never!
     ---@module 'avante'
@@ -68,14 +69,139 @@ return {
       end
 
       return {
-        -- comment out to enable `agentic` mode
-        -- mode = "legacy",
+        -- Mode configuration: "agentic" (default) or "legacy"
+        -- "agentic": AI can automatically execute tools with permission control
+        -- "legacy": Traditional mode requiring manual approval for all actions
+        mode = "agentic",
 
-        -- Automatically use copilot if available, otherwise ollama
+        -- Provider configuration
         provider = default_provider,
         auto_suggestions_provider = default_provider,
         providers = providers,
+
+        -- Behavior configuration for better control
+        behaviour = {
+          -- Permission control for AI tools
+          auto_approve_tool_permissions = false, -- Show permission prompts for all tools
+          -- Examples of fine-grained control:
+          -- auto_approve_tool_permissions = true,                        -- Auto-approve all tools (no prompts)
+          -- auto_approve_tool_permissions = {"str_replace", "view"},     -- Auto-approve only specific tools
+          
+          -- UI and workflow settings
+          auto_apply_diff_after_generation = false, -- Don't auto-apply changes, let user review first
+          confirmation_ui_style = "inline_buttons",
+          auto_add_current_file = true,
+          minimize_diff = true,
+          jump_result_buffer_on_finish = true,
+          
+          -- Advanced settings
+          auto_focus_sidebar = true,
+          enable_token_counting = true,
+          auto_check_diagnostics = true,
+        },
+        highlights = {
+          diff = {
+            current = "DiffText",
+            incoming = "DiffAdd",
+          },
+        },
+        -- Enhanced key mappings for better workflow
+        mappings = {
+          sidebar = {
+            apply_all = "A",           -- Apply all suggested changes
+            apply_cursor = "a",        -- Apply change under cursor
+            retry_user_request = "r",  -- Retry last request
+            edit_user_request = "e",   -- Edit and resend request
+            switch_windows = "<Tab>",  -- Switch between windows
+            reverse_switch_windows = "<S-Tab>", -- Reverse window switch
+            expand_tool_use = "<S-Tab>", -- Expand/collapse tool details
+            remove_file = "d",         -- Remove file from context
+            add_file = "@",           -- Add file to context
+            close = { "<Esc>", "q" }, -- Close sidebar
+          },
+          jump = {
+            next = "]]",              -- Jump to next code block
+            prev = "[[",              -- Jump to previous code block
+          },
+          -- Custom mode toggle
+          toggle = {
+            mode = "<leader>am",      -- Toggle between chat and agent modes
+          },
+          -- Git-style approval shortcuts (custom)
+          approval = {
+            accept = "co",            -- Accept/approve (like git "choose ours")  
+            reject = "ct",            -- Reject (like git "choose theirs")
+          },
+        },
       }
+    end,
+    config = function(_, opts)
+      require('avante').setup(opts)
+
+      -- In light theme, visibility of the diff view is bad.
+      -- https://github.com/yetone/avante.nvim/issues/2491
+      vim.api.nvim_set_hl(0, "AvanteToBeDeletedWOStrikethrough", { link = "DiffDelete" })
+      
+      -- Custom mode toggle function
+      local function toggle_mode()
+        local Config = require('avante.config')
+        local current_mode = Config.mode
+        local new_mode = current_mode == "agentic" and "legacy" or "agentic"
+        
+        -- Override the configuration
+        Config.override({ mode = new_mode })
+        
+        -- Provide user feedback
+        local mode_names = {
+          agentic = "Agent Mode (AI can execute tools with permissions)",
+          legacy = "Chat Mode (AI provides suggestions only)"
+        }
+        
+        vim.notify(
+          string.format("Switched to: %s", mode_names[new_mode]),
+          vim.log.levels.INFO,
+          { title = "Avante Mode Toggle" }
+        )
+      end
+      
+      -- Set up the mode toggle keymap
+      vim.keymap.set('n', '<leader>am', toggle_mode, {
+        desc = 'Toggle Avante mode (Chat/Agent)',
+        noremap = true,
+        silent = true
+      })
+      
+      -- Add git-style approval keymaps for Avante sidebar
+      local function setup_approval_keymaps()
+        local sidebar = require('avante').get()
+        if sidebar and sidebar.containers.result then
+          -- Accept/approve current change (like git "choose ours")
+          vim.keymap.set('n', 'co', function()
+            sidebar:apply(true) -- Apply cursor change
+          end, { 
+            buffer = sidebar.containers.result.bufnr,
+            desc = 'Accept/approve change under cursor',
+            noremap = true,
+            silent = true 
+          })
+          
+          -- Apply all changes (like accepting everything)
+          vim.keymap.set('n', 'ca', function() 
+            sidebar:apply(false) -- Apply all changes
+          end, { 
+            buffer = sidebar.containers.result.bufnr,
+            desc = 'Accept/approve all changes',
+            noremap = true, 
+            silent = true 
+          })
+        end
+      end
+      
+      -- Set up keymaps when Avante opens
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'AvanteViewBufferUpdated',
+        callback = setup_approval_keymaps,
+      })
     end,
     dependencies = {
       'nvim-lua/plenary.nvim',

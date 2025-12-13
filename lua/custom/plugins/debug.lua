@@ -1,4 +1,4 @@
--- 🐛 Enhanced Debugging for Go, Rust & Zig
+-- Enhanced Debugging for Go, Rust & Zig
 return {{
     'mfussenegger/nvim-dap',
     lazy = true,
@@ -92,23 +92,23 @@ return {{
             },
             dap_configurations = {{
                 type = 'go',
-                name = '🐹 Debug Package',
+                name = ' Debug Package',
                 request = 'launch',
                 program = '${workspaceFolder}'
             }, {
                 type = 'go',
-                name = '🧪 Debug Test',
+                name = '󰙨 Debug Test',
                 request = 'launch',
                 mode = 'test',
                 program = '${workspaceFolder}'
             }, {
                 type = 'go',
-                name = '📄 Debug File',
+                name = '󰈔 Debug File',
                 request = 'launch',
                 program = '${file}'
             }, {
                 type = 'go',
-                name = '🔗 Attach Remote',
+                name = '󰌘 Attach Remote',
                 mode = 'remote',
                 request = 'attach'
             }}
@@ -138,10 +138,10 @@ return {{
         config = function(_, opts)
             require('nvim-dap-virtual-text').setup(opts)
             
-            -- ✨ Hover state management
+            -- Hover state management
             local hover_enabled = true
             
-            -- ✨ Elegant cursor hover for variable inspection
+            -- Elegant cursor hover for variable inspection
             local function show_hover()
                 local word = vim.fn.expand('<cword>')
                 local session = require('dap').session()
@@ -150,8 +150,8 @@ return {{
                 session:request('evaluate', { expression = word, context = 'hover' }, function(err, resp)
                     if err or not resp or not resp.result then return end
                     
-                    local content = ('🔍 %s = %s'):format(word, resp.result)
-                    if resp.type then content = content .. ('\n📋 %s'):format(resp.type) end
+                    local content = ('󰍉 %s = %s'):format(word, resp.result)
+                    if resp.type then content = content .. ('\n󰋼 %s'):format(resp.type) end
                     
                     vim.lsp.util.open_floating_preview({content}, 'markdown', {
                         border = 'rounded',
@@ -162,14 +162,14 @@ return {{
                 end)
             end
             
-            -- 🔄 Toggle hover functionality
+            -- Toggle hover functionality
             local function toggle_hover()
                 hover_enabled = not hover_enabled
-                local status = hover_enabled and '✅ Enabled' or '❌ Disabled'
-                vim.notify('🔍 Debug Hover: ' .. status, vim.log.levels.INFO, { title = 'DAP' })
+                local status = hover_enabled and '󰄬 Enabled' or '󰄭 Disabled'
+                vim.notify('󰍉 Debug Hover: ' .. status, vim.log.levels.INFO, { title = 'DAP' })
             end
             
-            -- 🎯 Simple REPL evaluation
+            -- Simple REPL evaluation
             local function eval_repl()
                 local word = vim.fn.expand('<cword>')
                 if word and word ~= '' then
@@ -177,7 +177,7 @@ return {{
                 end
             end
             
-            -- 🚀 Auto-hover on cursor hold
+            -- 󰐊 Auto-hover on cursor hold
             vim.api.nvim_create_autocmd('CursorHold', {
                 group = vim.api.nvim_create_augroup('DapHover', { clear = true }),
                 callback = function() 
@@ -187,25 +187,25 @@ return {{
                 end
             })
             
-            -- 🔧 Keybindings
+            -- Keybindings
             vim.keymap.set('n', '<leader>dv', toggle_hover, { desc = 'Debug: Toggle variable hover', silent = true })
             vim.keymap.set('n', '<leader>dr', eval_repl, { desc = 'Debug: Evaluate in REPL', silent = true })
         end
     }},
 
     keys = {
-      -- 🎯 Function keys for quick debugging
+      -- Function keys for quick debugging
       { '<F5>', function() require('dap').continue() end, desc = 'Debug: Start/Continue' },
       { '<F1>', function() require('dap').step_into() end, desc = 'Debug: Step Into' },
       { '<F2>', function() require('dap').step_over() end, desc = 'Debug: Step Over' },
       { '<F3>', function() require('dap').step_out() end, desc = 'Debug: Step Out' },
       { '<F7>', function() require('dapui').toggle() end, desc = 'Debug: See last session result.' },
       
-      -- 🔍 Variable inspection
+      -- Variable inspection
       { '<leader>dv', desc = 'Debug: Toggle variable hover' },
       { '<leader>dr', desc = 'Debug: Evaluate variable in REPL' },
 
-      -- 🎯 Core debugging controls
+      -- Core debugging controls
       { '<leader>db', function() require('dap').toggle_breakpoint() end, desc = 'Toggle [D]ebug [B]reakpoint' },
       { '<leader>dB', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, desc = '[D]ebug [B]reakpoint Conditional' },
       { '<leader>dx', function() require('dap').clear_breakpoints() end, desc = '[D]ebug Clear All Breakpoints' },
@@ -214,7 +214,7 @@ return {{
       { '<leader>dt', function() require('dap').terminate() end, desc = '[D]ebug [T]erminate' },
       { '<leader>dp', function() require('dap').pause() end, desc = '[D]ebug [P]ause' },
 
-      -- 🚀 F-key equivalents grouped together
+      -- F-key equivalents grouped together
       { '<leader>dfc', function() require('dap').continue() end, desc = '<F5> [D]ebug [C]ontinue/Start' },
       { '<leader>dfi', function() require('dap').step_into() end, desc = '<F1> [D]ebug Step [I]nto' },
       { '<leader>dfO', function() require('dap').step_over() end, desc = '<F2> [D]ebug Step [O]ver' },
@@ -242,7 +242,7 @@ return {{
         dapui.toggle()
       end, desc = '<F7> [D]ebug [U]I Toggle' },
 
-      -- 🔍 Inspection tools
+      -- Inspection tools
       { '<leader>dir', function() require('dap').repl.toggle() end, desc = '[D]ebug [I]nspection Toggle [R]EPL' },
       { '<leader>dis', function() require('dap').session() end, desc = '[D]ebug [I]nspection [S]ession Info' },
       { '<leader>diw', function() require('dap.ui.widgets').hover() end, desc = '[D]ebug [I]nspection [W]idget Hover' },
@@ -258,7 +258,7 @@ return {{
         local dap = require 'dap'
         local dapui = require 'dapui'
 
-        -- 🎨 Catppuccin-styled breakpoint icons
+        -- Catppuccin-styled breakpoint icons
         local breakpoint_icons = {
             Breakpoint = '●',
             BreakpointCondition = '◐',
@@ -276,7 +276,7 @@ return {{
             })
         end
 
-        -- 🔧 Auto-open/close DAP UI with notifications
+        -- Auto-open/close DAP UI with notifications
         dap.listeners.after.event_initialized['dapui_config'] = function()
             -- Close Neo-tree if it's open
             local neo_tree_ok, neo_tree = pcall(require, 'neo-tree.command')
@@ -287,21 +287,21 @@ return {{
             end
 
             dapui.open()
-            vim.notify('🐛 Debug session started', vim.log.levels.INFO, {
+            vim.notify('󰃤 Debug session started', vim.log.levels.INFO, {
                 title = 'DAP'
             })
         end
 
         dap.listeners.before.event_terminated['dapui_config'] = function()
             dapui.close()
-            vim.notify('✅ Debug session terminated', vim.log.levels.INFO, {
+            vim.notify('󰄬 Debug session terminated', vim.log.levels.INFO, {
                 title = 'DAP'
             })
         end
 
         dap.listeners.before.event_exited['dapui_config'] = function()
             dapui.close()
-            vim.notify('🏁 Debug session exited', vim.log.levels.INFO, {
+            vim.notify('󰙨 Debug session exited', vim.log.levels.INFO, {
                 title = 'DAP'
             })
         end
@@ -317,7 +317,7 @@ return {{
         }
 
         dap.configurations.rust = {{
-            name = '🦀 Launch Rust',
+            name = '󱘗 Launch Rust',
             type = 'codelldb',
             request = 'launch',
             program = function()
@@ -326,7 +326,7 @@ return {{
             cwd = '${workspaceFolder}',
             args = {}
         }, {
-            name = '🧪 Debug Rust Tests',
+            name = '󰙨 Debug Rust Tests',
             type = 'codelldb',
             request = 'launch',
             program = function()
@@ -335,9 +335,9 @@ return {{
             cwd = '${workspaceFolder}'
         }}
 
-        -- ⚡ Zig debugging configuration
+        -- Zig debugging configuration
         dap.configurations.zig = {{
-            name = '⚡ Launch Zig',
+            name = '󰠳 Launch Zig',
             type = 'codelldb',
             request = 'launch',
             program = function()
@@ -346,7 +346,7 @@ return {{
             cwd = '${workspaceFolder}',
             args = {}
         }, {
-            name = '🧪 Debug Zig Tests',
+            name = '󰙨 Debug Zig Tests',
             type = 'codelldb',
             request = 'launch',
             program = function()

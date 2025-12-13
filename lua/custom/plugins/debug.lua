@@ -325,7 +325,24 @@ return {{
             return vim.fn.fnamemodify(file_path, ':h')
         end
         
-        local function get_executable_input(project_file, relative_path, fallback_path, prompt)
+        local function build_project(project_type, is_test)
+            if project_type == 'rust' then
+                local cmd = is_test and 'cargo test --no-run' or 'cargo build'
+                vim.notify('󰜎 Building Rust project...', vim.log.levels.INFO, { title = 'DAP' })
+                vim.fn.system(cmd)
+            elseif project_type == 'zig' then
+                local cmd = is_test and 'zig build test' or 'zig build'
+                vim.notify('󰜎 Building Zig project...', vim.log.levels.INFO, { title = 'DAP' })
+                vim.fn.system(cmd)
+            end
+        end
+        
+        local function get_executable_input(project_file, relative_path, fallback_path, prompt, project_type, is_test)
+            -- Build project first
+            if project_type then
+                build_project(project_type, is_test)
+            end
+            
             local project_root = find_project_root(project_file)
             local target_path = project_root and (project_root .. '/' .. relative_path) or fallback_path
             return vim.fn.input(prompt, target_path, 'file')
@@ -337,7 +354,7 @@ return {{
             type = 'codelldb',
             request = 'launch',
             program = function()
-                return get_executable_input('Cargo.toml', 'target/debug/', vim.fn.getcwd() .. '/target/debug/', 'Path to executable: ')
+                return get_executable_input('Cargo.toml', 'target/debug/', vim.fn.getcwd() .. '/target/debug/', 'Path to executable: ', 'rust', false)
             end,
             cwd = '${workspaceFolder}',
             args = {},
@@ -347,7 +364,7 @@ return {{
             type = 'codelldb',
             request = 'launch',
             program = function()
-                return get_executable_input('Cargo.toml', 'target/debug/deps/', vim.fn.getcwd() .. '/target/debug/deps/', 'Path to test executable: ')
+                return get_executable_input('Cargo.toml', 'target/debug/deps/', vim.fn.getcwd() .. '/target/debug/deps/', 'Path to test executable: ', 'rust', true)
             end,
             cwd = '${workspaceFolder}',
             args = { '--nocapture' },
@@ -360,7 +377,7 @@ return {{
             type = 'codelldb',
             request = 'launch',
             program = function()
-                return get_executable_input('build.zig', 'zig-out/bin/', vim.fn.getcwd() .. '/zig-out/bin/', 'Path to executable: ')
+                return get_executable_input('build.zig', 'zig-out/bin/', vim.fn.getcwd() .. '/zig-out/bin/', 'Path to executable: ', 'zig', false)
             end,
             cwd = '${workspaceFolder}',
             args = {},
@@ -370,7 +387,7 @@ return {{
             type = 'codelldb',
             request = 'launch',
             program = function()
-                return get_executable_input('build.zig', 'zig-out/bin/', vim.fn.getcwd() .. '/zig-out/bin/', 'Path to test executable: ')
+                return get_executable_input('build.zig', 'zig-out/bin/', vim.fn.getcwd() .. '/zig-out/bin/', 'Path to test executable: ', 'zig', true)
             end,
             cwd = '${workspaceFolder}',
             stopOnEntry = false

@@ -76,8 +76,9 @@ return {{
         dependencies = {'mason-org/mason.nvim'},
         opts = {
             automatic_installation = true,
-            ensure_installed = {'delve', -- Go debugger
-            'codelldb' -- Rust & Zig debugger
+            ensure_installed = {
+                'delve', -- Go debugger
+                'codelldb' -- Rust & Zig debugger
             },
             handlers = {}
         }

@@ -403,22 +403,43 @@ return {
             end,
           },
           {
-            -- Context breadcrumb (current function/class)
+            -- Avante mode indicator
             function()
-              local winid = vim.api.nvim_get_current_win()
-              local ok, navic = pcall(require, 'nvim-navic')
-              if ok and navic.is_available(winid) then
-                return navic.get_location()
+              if package.loaded['avante'] == nil then
+                return ''
               end
-              return ''
-            end,
-            color = { fg = '#7c7f93' },
-            fmt = function(str)
-              if #str > 40 then
-                return str:sub(1, 37) .. '...'
+              
+              local ok, avante_config = pcall(require, 'avante.config')
+              if not ok or not avante_config then
+                return ''
               end
-              return str
+              
+              local mode = avante_config.mode or 'legacy'
+              if mode == 'agentic' then
+                return '󱙺 Agent'
+              else
+                return '󰭹 Chat'
+              end
             end,
+            color = function()
+              if package.loaded['avante'] == nil then
+                return { fg = '#7c7f93' }
+              end
+              
+              local ok, avante_config = pcall(require, 'avante.config')
+              if not ok or not avante_config then
+                return { fg = '#7c7f93' }
+              end
+              
+              local mode = avante_config.mode or 'legacy'
+              if mode == 'agentic' then
+                return { fg = '#eff1f5', bg = '#8839ef', gui = 'bold' }
+              else
+                return { fg = '#eff1f5', bg = '#1e66f5', gui = 'bold' }
+              end
+            end,
+            separator = { left = '', right = '' },
+            padding = { left = 1, right = 1 },
           },
         },
         lualine_y = { 'encoding', 'fileformat', 'filetype', 'progress' },

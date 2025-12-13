@@ -72,7 +72,7 @@ return {
         -- Mode configuration: "agentic" (default) or "legacy"
         -- "agentic": AI can automatically execute tools with permission control
         -- "legacy": Traditional mode requiring manual approval for all actions
-        mode = "agentic",
+        mode = "legacy",
 
         -- Provider configuration
         provider = default_provider,
@@ -149,19 +149,7 @@ return {
         local new_mode = current_mode == "agentic" and "legacy" or "agentic"
         
         -- Override the configuration
-        Config.override({ mode = new_mode })
-        
-        -- Provide user feedback
-        local mode_names = {
-          agentic = "Agent Mode (AI can execute tools with permissions)",
-          legacy = "Chat Mode (AI provides suggestions only)"
-        }
-        
-        vim.notify(
-          string.format("Switched to: %s", mode_names[new_mode]),
-          vim.log.levels.INFO,
-          { title = "Avante Mode Toggle" }
-        )
+        Config.override({ mode = new_mode })    
       end
       
       -- Set up the mode toggle keymap

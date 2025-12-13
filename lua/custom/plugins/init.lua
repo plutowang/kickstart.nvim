@@ -8,5 +8,4 @@ return {
     { import = 'custom.plugins.dev' },
     { import = 'custom.plugins.lang' },
     { import = 'custom.plugins.utils' },
-    { import = 'custom.plugins.config' },
 }

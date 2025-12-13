@@ -126,8 +126,35 @@
 ### Database (nvim-dbee)
 | Key          | Action             |
 | ------------ | ------------------ |
-| `<leader>db` | Toggle Database UI |
-| `<leader>de` | Execute Query      |
+| `<leader>Dt` | Toggle Database UI |
+| `<leader>De` | Execute Query      |
+
+### Debug (DAP)
+| Key           | Action                         |
+| ------------- | ------------------------------ |
+| `<F5>`        | Debug: Start/Continue          |
+| `<F1>`        | Debug: Step Into               |
+| `<F2>`        | Debug: Step Over               |
+| `<F3>`        | Debug: Step Out                |
+| `<F7>`        | Debug: Toggle UI               |
+| `<leader>db`  | Toggle Debug Breakpoint        |
+| `<leader>dB`  | Debug Breakpoint Conditional   |
+| `<leader>dx`  | Debug Clear All Breakpoints    |
+| `<leader>dC`  | Debug Run to Cursor            |
+| `<leader>dl`  | Debug Run Last                 |
+| `<leader>dt`  | Debug Terminate                |
+| `<leader>dp`  | Debug Pause                    |
+| `<leader>dv`  | Debug: Toggle variable hover   |
+| `<leader>dr`  | Debug: Evaluate in REPL        |
+| `<leader>dfc` | <F5> Debug Continue/Start      |
+| `<leader>dfi` | <F1> Debug Step Into           |
+| `<leader>dfO` | <F2> Debug Step Over           |
+| `<leader>dfo` | <F3> Debug Step Out            |
+| `<leader>dfu` | <F7> Debug UI Toggle           |
+| `<leader>dir` | Debug Inspection Toggle REPL   |
+| `<leader>dis` | Debug Inspection Session Info  |
+| `<leader>diw` | Debug Inspection Widget Hover  |
+| `<leader>diW` | Debug Inspection Widget Scopes |
 
 ### Trouble (Diagnostics)
 | Key          | Action                         |

@@ -316,25 +316,43 @@ return {{
             }
         }
 
+        -- Helper functions for project path detection
+        local function find_project_root(project_file)
+            local file_path = vim.fn.findfile(project_file, '.;')
+            if file_path == '' then
+                return nil
+            end
+            return vim.fn.fnamemodify(file_path, ':h')
+        end
+        
+        local function get_executable_input(project_file, relative_path, fallback_path, prompt)
+            local project_root = find_project_root(project_file)
+            local target_path = project_root and (project_root .. '/' .. relative_path) or fallback_path
+            return vim.fn.input(prompt, target_path, 'file')
+        end
+
+        -- Rust debugging configuration
         dap.configurations.rust = {{
             name = '󱘗 Launch Rust',
             type = 'codelldb',
             request = 'launch',
             program = function()
-                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+                return get_executable_input('Cargo.toml', 'target/debug/', vim.fn.getcwd() .. '/target/debug/', 'Path to executable: ')
             end,
             cwd = '${workspaceFolder}',
-            args = {}
+            args = {},
+            stopOnEntry = false
         }, {
             name = '󰙨 Debug Rust Tests',
             type = 'codelldb',
             request = 'launch',
             program = function()
-                return vim.fn.input('Path to test executable: ', vim.fn.getcwd() .. '/target/debug/deps/', 'file')
+                return get_executable_input('Cargo.toml', 'target/debug/deps/', vim.fn.getcwd() .. '/target/debug/deps/', 'Path to test executable: ')
             end,
-            cwd = '${workspaceFolder}'
+            cwd = '${workspaceFolder}',
+            args = { '--nocapture' },
+            stopOnEntry = false
         }}
-
 
         -- Zig debugging configuration
         dap.configurations.zig = {{
@@ -342,18 +360,20 @@ return {{
             type = 'codelldb',
             request = 'launch',
             program = function()
-                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/zig-out/bin/', 'file')
+                return get_executable_input('build.zig', 'zig-out/bin/', vim.fn.getcwd() .. '/zig-out/bin/', 'Path to executable: ')
             end,
             cwd = '${workspaceFolder}',
-            args = {}
+            args = {},
+            stopOnEntry = false
         }, {
             name = '󰙨 Debug Zig Tests',
             type = 'codelldb',
             request = 'launch',
             program = function()
-                return vim.fn.input('Path to test executable: ', vim.fn.getcwd() .. '/zig-out/bin/', 'file')
+                return get_executable_input('build.zig', 'zig-out/bin/', vim.fn.getcwd() .. '/zig-out/bin/', 'Path to test executable: ')
             end,
-            cwd = '${workspaceFolder}'
+            cwd = '${workspaceFolder}',
+            stopOnEntry = false
         }}
 
     end

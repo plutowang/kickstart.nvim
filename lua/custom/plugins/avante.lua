@@ -129,8 +129,8 @@ return {
           },
           -- Git-style approval shortcuts (custom)
           approval = {
-            accept = "co",            -- Accept/approve (like git "choose ours")  
-            reject = "ct",            -- Reject (like git "choose theirs")
+             reject = "co",            -- Reject (like git "choose ours")  
+             accept = "ct",            -- Accept (like git "choose theirs")
           },
         },
       }
@@ -175,22 +175,20 @@ return {
       local function setup_approval_keymaps()
         local sidebar = require('avante').get()
         if sidebar and sidebar.containers.result then
-          -- Accept/approve current change (like git "choose ours")
-          vim.keymap.set('n', 'co', function()
-            sidebar:apply(true) -- Apply cursor change
+          vim.keymap.set('n', 'ct', function()
+            sidebar:apply(true)
           end, { 
             buffer = sidebar.containers.result.bufnr,
-            desc = 'Accept/approve change under cursor',
+            desc = 'Accept Change',
             noremap = true,
             silent = true 
           })
           
-          -- Apply all changes (like accepting everything)
-          vim.keymap.set('n', 'ca', function() 
-            sidebar:apply(false) -- Apply all changes
+          vim.keymap.set('n', 'co', function() 
+            sidebar:apply(false)
           end, { 
             buffer = sidebar.containers.result.bufnr,
-            desc = 'Accept/approve all changes',
+            desc = 'Reject Change',
             noremap = true, 
             silent = true 
           })

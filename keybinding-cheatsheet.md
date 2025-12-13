@@ -113,14 +113,14 @@
 ### Testing (Neotest)
 | Key          | Action                  |
 | ------------ | ----------------------- |
-| `<leader>rn` | Run Nearest test        |
+| `<leader>rt` | Run Nearest Test        |
 | `<leader>rf` | Run File tests          |
 | `<leader>ra` | Run All tests           |
 | `<leader>rl` | Run Last test           |
 | `<leader>rs` | Run Stop                |
-| `<leader>rt` | Run Toggle summary      |
+| `<leader>rS` | Run Toggle Summary      |
 | `<leader>ro` | Run Output show         |
-| `<leader>rO` | Run Output panel toggle |
+| `<leader>rO` | Run Toggle Output Panel |
 | `<leader>rw` | Run Watch toggle        |
 
 ### Database (nvim-dbee)

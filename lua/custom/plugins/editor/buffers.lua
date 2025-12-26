@@ -1,11 +1,25 @@
 return {
   {
+    'okuuva/auto-save.nvim',
+    event = { 'InsertLeave', 'TextChanged' },
+    opts = {
+      enabled = true,
+      trigger_events = {
+        immediate_save = { 'BufLeave', 'FocusLost' },
+        defer_save = { 'InsertLeave', 'TextChanged' },
+        cancel_deferred_save = { 'InsertEnter' },
+      },
+      debounce_delay = 3000,
+      debug = false,
+    },
+  },
+  {
     'romgrk/barbar.nvim',
     dependencies = {
       { 'lewis6991/gitsigns.nvim', optional = true },
       { 'nvim-tree/nvim-web-devicons', optional = true },
     },
-    event = 'BufAdd', -- Load when first buffer is added
+    event = 'BufAdd',
     init = function()
       vim.g.barbar_auto_setup = false
     end,
@@ -23,12 +37,14 @@ return {
       map('n', '<leader>9', '<Cmd>BufferGoto 9<CR>', opts)
       map('n', '<leader>0', '<Cmd>BufferLast<CR>', opts)
 
-      map('n', '<leader>od', '<Cmd>BufferOrderByDirectory<CR>', opts)
-      map('n', '<leader>ol', '<Cmd>BufferOrderByLanguage<CR>', opts)
+      map('n', '<leader>bo', '<Cmd>BufferOrderByDirectory<CR>', opts)
+      map('n', '<leader>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
 
       map('n', '<C-h>', '<Cmd>BufferPrevious<CR>', opts)
       map('n', '<C-l>', '<Cmd>BufferNext<CR>', opts)
       map('n', '<C-x>', '<Cmd>BufferClose<CR>', opts)
+      map('n', '<M-h>', '<Cmd>BufferMovePrevious<CR>', opts)
+      map('n', '<M-l>', '<Cmd>BufferMoveNext<CR>', opts)
       map('n', '<A-h>', '<Cmd>BufferMovePrevious<CR>', opts)
       map('n', '<A-l>', '<Cmd>BufferMoveNext<CR>', opts)
       require('barbar').setup {
@@ -49,5 +65,5 @@ return {
         },
       }
     end,
-  }
+  },
 }

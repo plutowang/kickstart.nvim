@@ -8,3 +8,4 @@ lazy-lock.json
 nx.lua
 *.DS_Store
 .idea
+.zig-cache

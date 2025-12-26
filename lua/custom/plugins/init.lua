@@ -2,4 +2,10 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+    { import = 'custom.plugins.editor' },
+    { import = 'custom.plugins.ui' },
+    { import = 'custom.plugins.dev' },
+    { import = 'custom.plugins.lang' },
+    { import = 'custom.plugins.utils' },
+}

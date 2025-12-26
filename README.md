@@ -1,5 +1,20 @@
 # kickstart.nvim
 
+![Startup Time](https://img.shields.io/badge/Startup%20Time-~30ms-brightgreen?style=flat-square&logo=neovim&logoColor=white)
+[![Prerequisites](https://img.shields.io/badge/📋-Prerequisites-blue?style=flat-square)](prerequisites.md)
+[![Keybindings](https://img.shields.io/badge/⌨️-Keybindings-purple?style=flat-square)](keybinding-cheatsheet.md)
+
+## ⚠️ Repository Status
+
+> **DEPRECATED** 
+> 
+> This forked repository is **no longer maintained** and has been **deprecated**. 
+> 
+> **New Repository**: All future development and maintenance will continue at:  
+> 🔗 **[https://github.com/plutowang/term.conf](https://github.com/plutowang/term.conf)**
+> 
+> Please update your references and consider switching to the new repository for the latest updates and support.
+
 ## Introduction
 
 A starting point for Neovim that is:

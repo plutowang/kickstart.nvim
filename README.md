@@ -1,9 +1,3 @@
-# kickstart.nvim
-
-![Startup Time](https://img.shields.io/badge/Startup%20Time-~30ms-brightgreen?style=flat-square&logo=neovim&logoColor=white)
-[![Prerequisites](https://img.shields.io/badge/📋-Prerequisites-blue?style=flat-square)](prerequisites.md)
-[![Keybindings](https://img.shields.io/badge/⌨️-Keybindings-purple?style=flat-square)](keybinding-cheatsheet.md)
-
 ## ⚠️ Repository Status
 
 > **DEPRECATED** 
@@ -14,6 +8,12 @@
 > 🔗 **[https://github.com/plutowang/term.conf](https://github.com/plutowang/term.conf)**
 > 
 > Please update your references and consider switching to the new repository for the latest updates and support.
+
+# kickstart.nvim
+
+![Startup Time](https://img.shields.io/badge/Startup%20Time-~30ms-brightgreen?style=flat-square&logo=neovim&logoColor=white)
+[![Prerequisites](https://img.shields.io/badge/📋-Prerequisites-blue?style=flat-square)](prerequisites.md)
+[![Keybindings](https://img.shields.io/badge/⌨️-Keybindings-purple?style=flat-square)](keybinding-cheatsheet.md)
 
 ## Introduction
 
